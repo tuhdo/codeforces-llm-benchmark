@@ -1,0 +1,10 @@
+{
+  "handle": "your-handle",
+  "channels": [
+    {
+      "name": "your-handle",
+      "cookie_file": "session.txt",
+      "ua": "chrome"
+    }
+  ]
+}
