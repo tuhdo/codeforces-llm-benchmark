@@ -1,0 +1,25 @@
+# credentials - never commit
+session*.txt
+session.txt.old
+*.key
+*.secret
+channels.json
+channel2.ready
+
+# runtime artifacts
+logs/
+browser_queue/
+data/pages/
+data/contest_list_raw.json
+data/home.html
+claude.paused
+__pycache__/
+*.exe
+sol
+
+# organized solutions ARE tracked (flat copies only);
+# do NOT use a bare "runs/" rule - it would block all negations inside
+runs/*
+!runs/*/
+runs/*/*
+!runs/*/sol_*.cpp
