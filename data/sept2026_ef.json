@@ -1,0 +1,193 @@
+[
+  {
+    "contestId": 2259,
+    "contestName": "Codeforces Round 1119 (Div. 3)",
+    "index": "E",
+    "name": "Treasure Map Destruction (Constructive Version)",
+    "rating": 1500,
+    "tags": [
+      "2-sat",
+      "constructive algorithms",
+      "greedy"
+    ]
+  },
+  {
+    "contestId": 2259,
+    "contestName": "Codeforces Round 1119 (Div. 3)",
+    "index": "F",
+    "name": "Binary Bubble Sort Inversions",
+    "rating": 1800,
+    "tags": [
+      "data structures",
+      "math",
+      "two pointers"
+    ]
+  },
+  {
+    "contestId": 2260,
+    "contestName": "Educational Codeforces Round 194 (Rated for Div. 2)",
+    "index": "E",
+    "name": "Cyclic Balance",
+    "rating": 2000,
+    "tags": [
+      "binary search",
+      "constructive algorithms",
+      "dp",
+      "math"
+    ]
+  },
+  {
+    "contestId": 2260,
+    "contestName": "Educational Codeforces Round 194 (Rated for Div. 2)",
+    "index": "F",
+    "name": "Edge Three-Coloring",
+    "rating": 2500,
+    "tags": [
+      "brute force",
+      "dfs and similar",
+      "dsu",
+      "graphs",
+      "trees"
+    ]
+  },
+  {
+    "contestId": 2262,
+    "contestName": "Codeforces Round 1120 (Div. 1)",
+    "index": "E",
+    "name": "Paired Bracket Sequences",
+    "rating": 3100,
+    "tags": [
+      "combinatorics",
+      "math"
+    ]
+  },
+  {
+    "contestId": 2262,
+    "contestName": "Codeforces Round 1120 (Div. 1)",
+    "index": "F",
+    "name": "Rank Removal",
+    "rating": 3500,
+    "tags": [
+      "math"
+    ]
+  },
+  {
+    "contestId": 2263,
+    "contestName": "Codeforces Round 1120 (Div. 2)",
+    "index": "E",
+    "name": "Traveling the World",
+    "rating": 2300,
+    "tags": [
+      "graphs"
+    ]
+  },
+  {
+    "contestId": 2263,
+    "contestName": "Codeforces Round 1120 (Div. 2)",
+    "index": "F",
+    "name": "PLUSworld",
+    "rating": 2900,
+    "tags": [
+      "graphs",
+      "greedy"
+    ]
+  },
+  {
+    "contestId": 2264,
+    "contestName": "Codeforces Round 1121 (Div. 2)",
+    "index": "F",
+    "name": "Deranged Calculator",
+    "rating": 2800,
+    "tags": [
+      "constructive algorithms",
+      "implementation",
+      "math"
+    ]
+  },
+  {
+    "contestId": 2266,
+    "contestName": "Codeforces Round 1122 (Div. 3)",
+    "index": "E",
+    "name": "Prime Destruction",
+    "rating": null,
+    "tags": [
+      "brute force",
+      "dp",
+      "math",
+      "number theory"
+    ]
+  },
+  {
+    "contestId": 2266,
+    "contestName": "Codeforces Round 1122 (Div. 3)",
+    "index": "F",
+    "name": "MEX Replacement",
+    "rating": null,
+    "tags": [
+      "binary search",
+      "brute force",
+      "greedy",
+      "implementation",
+      "math",
+      "sortings"
+    ]
+  },
+  {
+    "contestId": 2267,
+    "contestName": "Codeforces Round 1123 (Div. 2)",
+    "index": "E",
+    "name": "Clean Substrings",
+    "rating": null,
+    "tags": [
+      "combinatorics",
+      "data structures",
+      "math"
+    ]
+  },
+  {
+    "contestId": 2268,
+    "contestName": "Codeforces Round 1124 (Div. 1)",
+    "index": "E",
+    "name": "Kia Kio and Tree of Life",
+    "rating": null,
+    "tags": [
+      "data structures",
+      "fft",
+      "math",
+      "trees"
+    ]
+  },
+  {
+    "contestId": 2268,
+    "contestName": "Codeforces Round 1124 (Div. 1)",
+    "index": "F",
+    "name": "Deglado",
+    "rating": null,
+    "tags": [
+      "constructive algorithms"
+    ]
+  },
+  {
+    "contestId": 2269,
+    "contestName": "Codeforces Round 1124 (Div. 2)",
+    "index": "E",
+    "name": "KiaKio and Energy Intervals",
+    "rating": null,
+    "tags": [
+      "binary search",
+      "bitmasks",
+      "data structures",
+      "divide and conquer"
+    ]
+  },
+  {
+    "contestId": 2269,
+    "contestName": "Codeforces Round 1124 (Div. 2)",
+    "index": "F",
+    "name": "AghaBalaSar and Hamed",
+    "rating": null,
+    "tags": [
+      "dp"
+    ]
+  }
+]

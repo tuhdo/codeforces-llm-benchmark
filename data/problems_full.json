@@ -1,0 +1,1448 @@
+[
+  {
+    "contestId": 2259,
+    "contestName": "Codeforces Round 1119 (Div. 3)",
+    "index": "E",
+    "name": "Treasure Map Destruction (Constructive Version)",
+    "rating": 1500,
+    "tags": [
+      "2-sat",
+      "constructive algorithms",
+      "greedy"
+    ],
+    "statement": "E. Treasure Map Destruction (Constructive Version)\ntime limit per test\n2 seconds\nmemory limit per test\n256 megabytes\ninput\nstandard input\noutput\nstandard output\n\nBessie the Buccaneer has plundered the six or seven seas for decades, but now she needs to find a place to bury her treasure!\nThere are $$$n$$$ islands in a line, and Bessie buried her treasure on some number of islands. It is guaranteed that Bessie buried treasure on at least one island.\nIn order to remember where she buried her treasure, she created a treasure map. The treasure map can be represented as an array of $$$n$$$ integers, where $$$a_i$$$ indicates the minimum number of islands that Bessie would need to travel through to get to an island with treasure if she started at island $$$i$$$, assuming she can only travel to adjacent islands.\nHowever, after Bessie buried her treasure, Elsie the Evil Explorer tried to steal Bessie's treasure map! Thankfully, Elsie was unsuccessful, but in the chaos, parts of Bessie's treasure map got destroyed, meaning that some of the elements of $$$a$$$ were set to $$$-1$$$! Panicked, Bessie gives you the destroyed array $$$b$$$, and wants you to find any possible set of islands that she could have placed her treasure on. It's possible that Bessie messed up while writing the treasure map, so there could be no possible set of islands that she could have placed her treasure on.\n\nInput\nThe first line of the input contains $$$t$$$ ($$$1 \\leq t \\leq 10^4$$$) \u2014 the number of test cases.\nThe first line of each test case contains $$$n$$$ ($$$1 \\leq n \\leq 2 \\cdot 10^5$$$) \u2014 the number of islands.\nThe second line contains $$$b_1, b_2, \\ldots, b_n$$$ ($$$-1 \\leq b_i \\leq n-1$$$) \u2014 the destroyed array of distances. If $$$b_i = -1$$$, the element was destroyed.\nIt is guaranteed that the sum of $$$n$$$ over all test cases does not exceed $$$2 \\cdot 10^5$$$.\n\nOutput\nFor each test case, output a bitstring of length $$$n$$$, such that the $$$i$$$-th character is $$$1$$$ if there is a treasure at position $$$i$$$, or $$$0$$$ if there isn't. If there are multiple possible answers, output any. If there are no possible answers, output $$$-1$$$. Your answer must contain at least one treasure.",
+    "samples": [
+      {
+        "input": "12\n5\n0 1 -1 -1 0\n3\n-1 0 2\n5\n-1 1 -1 1 -1\n5\n-1 -1 -1 -1 -1\n5\n-1 2 -1 3 -1\n7\n2 1 0 1 0 1 2\n1\n-1\n3\n1 -1 1\n1\n0\n4\n3 -1 -1 -1\n6\n-1 -1 0 -1 2 4\n10\n-1 1 -1 -1 1 1 -1 -1 2 -1",
+        "output": "10101\n-1\n10001\n11010\n-1\n0010100\n1\n010\n1\n0001\n-1\n1001001000"
+      }
+    ],
+    "csrf": "6337e707a3405b3998dcebd67c390c9b",
+    "ftaa": "fhh8klj2brpmyratpe",
+    "bfaa": "43f02d372b3f6032748c8f668bb44916",
+    "languages": {
+      "87": "Java 21 64bit",
+      "36": "Java 8 32bit",
+      "7": "Python 2.7.18",
+      "31": "Python 3.13.2",
+      "34": "JavaScript V8 4.8.0"
+    },
+    "url": "https://codeforces.com/contest/2259/problem/E"
+  },
+  {
+    "contestId": 2259,
+    "contestName": "Codeforces Round 1119 (Div. 3)",
+    "index": "F",
+    "name": "Binary Bubble Sort Inversions",
+    "rating": 1800,
+    "tags": [
+      "data structures",
+      "math",
+      "two pointers"
+    ],
+    "statement": "F. Binary Bubble Sort Inversions\ntime limit per test\n3 seconds\nmemory limit per test\n256 megabytes\ninput\nstandard input\noutput\nstandard output\n\nDefine performing a bubble on an array $$$b_1, b_2, \\ldots, b_m$$$ to be performing the following action:\n  For each integer $$$i$$$ ($$$1 \\leq i  \\lt  m$$$) in order, if $$$b_i  \\gt  b_{i+1}$$$, swap $$$b_i$$$ and $$$b_{i+1}$$$.\n Define performing a reverse bubble on an array $$$b_1, b_2, \\ldots, b_m$$$ to be performing the following action:   For each integer $$$i$$$ ($$$1 \\leq i  \\lt  m$$$) in reverse order, if $$$b_i  \\gt  b_{i+1}$$$, swap $$$b_i$$$ and $$$b_{i+1}$$$.\nFor example, if we perform a bubble on $$$[1, 1, 0]$$$, we would transform it as follows: $$$[\\color{red}{1, 1}, 0] \\to [1, \\color{red}{1, 0}] \\to [1, 0, 1]$$$. If we perform a reverse bubble on $$$[1, 1, 0]$$$, we would transform it as follows: $$$[1, \\color{red}{1, 0}] \\to[\\color{red}{1, 0}, 1] \\to [0, 1, 1]$$$.\nYou are given an array $$$a_1, a_2, \\ldots, a_n$$$ consisting of only 0s and 1s and a binary string$$$^{\\text{\u2217}}$$$ $$$s$$$ of length $$$n$$$. You perform $$$n$$$ operations in order, where the $$$i$$$-th operation performs a bubble on $$$a$$$ if $$$s_i = \\texttt{1}$$$ and performs a reverse bubble on $$$a$$$ if $$$s_i = \\texttt{0}$$$. For each of the $$$n + 1$$$ states of $$$a$$$ \u2014 before any operations have been performed and after each operation \u2014 count the number of inversions$$$^{\\text{\u2020}}$$$ in $$$a$$$.\n$$$^{\\text{\u2217}}$$$A binary string is a string that only contains 0s and 1s.\n$$$^{\\text{\u2020}}$$$An inversion in an array $$$c$$$ of length $$$m$$$ is a pair of indices $$$i, j$$$ such that $$$1 \\leq i  \\lt  j \\leq m$$$ and $$$c_i  \\gt  c_j$$$.\n\nInput\nThe first line of each input contains $$$t$$$ ($$$1 \\leq t \\leq 10^4$$$) \u2014 the number of test cases.\nThe first line of each test case contains $$$n$$$ ($$$1 \\leq n \\leq 5 \\cdot 10^5$$$) \u2014 the length of $$$a$$$ and $$$s$$$.\nThe second line of each test case contains $$$a_1, a_2, \\ldots, a_n$$$ ($$$0 \\leq a_i \\leq 1$$$) \u2014 the array $$$a$$$.\nThe third line of each test case contains $$$s$$$ ($$$s_i \\in \\{0, 1\\}$$$, $$$|s| = n$$$$$$^{\\text{\u2217}}$$$) \u2014 the binary string $$$s$$$.\nIt is guaranteed that the sum of $$$n$$$ over all test cases does not exceed $$$5 \\cdot 10^5$$$.\n$$$^{\\text{\u2217}}$$$$$$|c|$$$ denotes the length of a string $$$c$$$.\n\nOutput\nFor each test case, output $$$n + 1$$$ space separated integers, the $$$i$$$-th integer denoting the number of inversions in $$$a$$$ after the first $$$i - 1$$$ operations have been performed.",
+    "samples": [
+      {
+        "input": "7\n4\n1 1 0 0\n1010\n7\n0 1 0 1 1 0 0\n0101001\n4\n0 0 1 1\n1001\n1\n1\n1\n5\n0 1 1 0 0\n11101\n3\n1 0 0\n000\n6\n1 0 1 1 0 0\n011000",
+        "output": "4 2 1 0 0 \n7 4 2 0 0 0 0 0 \n0 0 0 0 0 \n0 0 \n4 2 0 0 0 0 \n2 1 0 0 \n7 4 2 1 0 0 0 "
+      }
+    ],
+    "csrf": "6337e707a3405b3998dcebd67c390c9b",
+    "ftaa": "fhh8klj2brpmyratpe",
+    "bfaa": "43f02d372b3f6032748c8f668bb44916",
+    "languages": {
+      "87": "Java 21 64bit",
+      "36": "Java 8 32bit",
+      "7": "Python 2.7.18",
+      "31": "Python 3.13.2",
+      "34": "JavaScript V8 4.8.0"
+    },
+    "url": "https://codeforces.com/contest/2259/problem/F"
+  },
+  {
+    "contestId": 2260,
+    "contestName": "Educational Codeforces Round 194 (Rated for Div. 2)",
+    "index": "E",
+    "name": "Cyclic Balance",
+    "rating": 2000,
+    "tags": [
+      "binary search",
+      "constructive algorithms",
+      "dp",
+      "math"
+    ],
+    "statement": "E. Cyclic Balance\ntime limit per test\n2 seconds\nmemory limit per test\n512 megabytes\ninput\nstandard input\noutput\nstandard output\n\nConsider a string $$$t=t_1t_2\\ldots t_m$$$ consisting of the characters 0 and 1. We call the pairs of adjacent characters of the string $$$t$$$ the pairs $$$t_1t_2, t_2t_3, \\ldots, t_{m-1}t_m$$$, as well as the pair $$$t_mt_1$$$. The last pair connects the end of the string with its beginning, so exactly $$$m$$$ pairs are considered in total. If the string consists of only one character, the only pair that is considered is $$$t_1 t_1$$$.\nWe call a string $$$t$$$ cyclically balanced if, among its pairs of adjacent characters, the numbers of pairs 00, 01, 10, and 11 are equal.\nThe cost of a binary string is the minimum number of characters that need to be inserted into it so that it becomes cyclically balanced. Characters may be inserted in any positions, including before the first and after the last character of the string. It is not allowed to delete or replace the original characters.\nYou are given a binary string $$$s$$$ and $$$q$$$ queries. In each query, indices $$$l$$$ and $$$r$$$ are given. Find the cost of the substring $$$s_l s_{l+1}\\ldots s_r$$$.\n\nInput\nThe first line contains two integers $$$n$$$ and $$$q$$$ ($$$1 \\le n, q \\le 3 \\cdot 10^5$$$)\u00a0\u2014 the length of the string and the number of queries.\nThe second line contains $$$s$$$ \u2014 a sequence of length $$$n$$$ consisting of the characters 0 and/or 1.\nThen follow $$$q$$$ lines; the $$$i$$$-th of them contains two integers $$$l_i$$$ and $$$r_i$$$ ($$$1 \\le l_i \\le r_i \\le n$$$)\u00a0\u2014 the boundaries of the substring for the corresponding query.\n\nOutput\nPrint $$$q$$$ integers: the $$$i$$$-th integer should be equal to the cost of the substring from the $$$i$$$-th query.",
+    "samples": [
+      {
+        "input": "11 7\n00111100000\n1 8\n1 1\n1 2\n1 4\n3 6\n2 7\n7 11",
+        "output": "4\n3\n2\n0\n4\n2\n7"
+      }
+    ],
+    "csrf": "6337e707a3405b3998dcebd67c390c9b",
+    "ftaa": "fhh8klj2brpmyratpe",
+    "bfaa": "43f02d372b3f6032748c8f668bb44916",
+    "languages": {
+      "87": "Java 21 64bit",
+      "36": "Java 8 32bit",
+      "7": "Python 2.7.18",
+      "31": "Python 3.13.2",
+      "34": "JavaScript V8 4.8.0"
+    },
+    "url": "https://codeforces.com/contest/2260/problem/E"
+  },
+  {
+    "contestId": 2260,
+    "contestName": "Educational Codeforces Round 194 (Rated for Div. 2)",
+    "index": "F",
+    "name": "Edge Three-Coloring",
+    "rating": 2500,
+    "tags": [
+      "brute force",
+      "dfs and similar",
+      "dsu",
+      "graphs",
+      "trees"
+    ],
+    "statement": "F. Edge Three-Coloring\ntime limit per test\n4 seconds\nmemory limit per test\n512 megabytes\ninput\nstandard input\noutput\nstandard output\n\nYou are given an undirected connected graph with $$$n$$$ vertices and $$$m$$$ edges, where $$$m \\le n + 9$$$.\nEach edge of the graph must be colored with one of three colors numbered from $$$1$$$ to $$$3$$$. We say that vertices $$$u$$$ and $$$v$$$ are reachable in color $$$c$$$ if there exists a path from $$$u$$$ to $$$v$$$ consisting only of edges of color $$$c$$$.\nDetermine whether there exists a way to color the edges such that the following conditions are satisfied:\n  for each color, there is at least one edge painted in that color;\n for every pair of colors $$$i$$$ and $$$j$$$ and every pair of vertices $$$u$$$ and $$$v$$$, the following holds: if $$$u$$$ and $$$v$$$ are reachable in color $$$i$$$ and $$$i \\lt j$$$, then they are also reachable in color $$$j$$$.\n\nInput\nThe first line contains one integer $$$t$$$ ($$$1 \\le t \\le 1000$$$) \u2014 the number of test cases.\nEach test case begins with a line that contains two integers $$$n$$$ and $$$m$$$ ($$$2 \\le n \\le 3000$$$; $$$n - 1 \\le m \\le n + 9$$$)\u00a0\u2014 the number of vertices and edges in the graph.\nEach of the next $$$m$$$ lines of a test case contains two integers $$$u_i$$$ and $$$v_i$$$ ($$$1 \\le u_i, v_i \\le n$$$, $$$u_i \\ne v_i$$$)\u00a0\u2014 the endpoints of the $$$i$$$-th edge.\nAdditional constraints on the input:\n  the sum of $$$n$$$ over all test cases does not exceed $$$3000$$$;\n in each test case, the graph has no self-loops or multiple edges;\n in each test case, the graph is connected.\n\nOutput\nFor each test case, print the answer as follows: if such an edge coloring exists, print YES; otherwise, print NO. Each letter may be printed in any case.",
+    "samples": [
+      {
+        "input": "4\n4 6\n1 2\n2 3\n3 1\n1 4\n2 4\n3 4\n3 3\n1 2\n2 3\n3 1\n7 9\n1 2\n2 3\n3 1\n1 4\n4 5\n5 1\n1 6\n6 7\n7 1\n5 8\n1 2\n2 3\n3 4\n4 1\n5 1\n5 2\n5 3\n5 4",
+        "output": "YES\nNO\nNO\nYES"
+      }
+    ],
+    "csrf": "6337e707a3405b3998dcebd67c390c9b",
+    "ftaa": "fhh8klj2brpmyratpe",
+    "bfaa": "43f02d372b3f6032748c8f668bb44916",
+    "languages": {
+      "87": "Java 21 64bit",
+      "36": "Java 8 32bit",
+      "7": "Python 2.7.18",
+      "31": "Python 3.13.2",
+      "34": "JavaScript V8 4.8.0"
+    },
+    "url": "https://codeforces.com/contest/2260/problem/F"
+  },
+  {
+    "contestId": 2262,
+    "contestName": "Codeforces Round 1120 (Div. 1)",
+    "index": "E",
+    "name": "Paired Bracket Sequences",
+    "rating": 3100,
+    "tags": [
+      "combinatorics",
+      "math"
+    ],
+    "statement": "E. Paired Bracket Sequences\ntime limit per test\n2 seconds\nmemory limit per test\n256 megabytes\ninput\nstandard input\noutput\nstandard output\n\nFarmer John is interested in bracket sequences with common pairings.\nA balanced bracket sequence is one in which every opening bracket is matched with a later closing bracket, and no prefix contains more closing brackets than opening brackets.\nFor a balanced bracket sequence $$$s$$$, a pairing is a pair of positions $$$(i,j)$$$ with $$$i \\lt j$$$ such that $$$s_i$$$ is an opening bracket, $$$s_j$$$ is a closing bracket, and the substring strictly between them is balanced.\nConsider an ordered pair $$$(s,t)$$$ of balanced bracket sequences, where both $$$s$$$ and $$$t$$$ have length $$$2n$$$. A pairing $$$(i,j)$$$ is common to $$$s$$$ and $$$t$$$ if $$$(i,j)$$$ is a pairing in both sequences. For example, the bracket sequences $$$\\texttt{(()())}$$$ and $$$\\texttt{((()))}$$$ have one common pairing, namely the outer pair $$$(1,6)$$$.\nTwo ordered pairs $$$(s,t)$$$ and $$$(s',t')$$$ are considered different if $$$s \\ne s'$$$ or $$$t \\ne t'$$$.\nFor each $$$0 \\le k \\le n$$$, Farmer John wants to know the number of ordered pairs $$$(s,t)$$$ of balanced bracket sequences of length $$$2n$$$ with exactly $$$k$$$ common pairings. Since these numbers may be large, output them modulo $$$M$$$.\n\nInput\nEach test contains multiple test cases. The first line contains the number of test cases $$$t$$$ ($$$1 \\le t \\le 500$$$). The description of the test cases follows.\nThe first line of each testcase will contain two integers, $$$n$$$ and $$$M$$$ ($$$1 \\leq n \\leq 500$$$, $$$10^8 \\leq M \\leq 10^9$$$) \u2014 half the length of the bracket sequence and the modulo to output the answer in. It is guaranteed that $$$M$$$ is prime.\nIt is guaranteed that the sum of $$$n$$$ over all test cases does not exceed $$$500$$$.\n\nOutput\nFor each testcase, output $$$n + 1$$$ integers, the answer modulo $$$M$$$ for each $$$0 \\leq k \\leq n$$$.",
+    "samples": [
+      {
+        "input": "5\n1 998244353\n2 998244353\n3 998244353\n4 998244353\n8 998244353",
+        "output": "0 1 \n2 0 2 \n8 12 0 5 \n62 64 56 0 14 \n378790 646560 542960 296800 127400 34944 16016 0 1430 "
+      }
+    ],
+    "csrf": "6337e707a3405b3998dcebd67c390c9b",
+    "ftaa": "fhh8klj2brpmyratpe",
+    "bfaa": "43f02d372b3f6032748c8f668bb44916",
+    "languages": {
+      "87": "Java 21 64bit",
+      "36": "Java 8 32bit",
+      "7": "Python 2.7.18",
+      "31": "Python 3.13.2",
+      "34": "JavaScript V8 4.8.0"
+    },
+    "url": "https://codeforces.com/contest/2262/problem/E"
+  },
+  {
+    "contestId": 2262,
+    "contestName": "Codeforces Round 1120 (Div. 1)",
+    "index": "F",
+    "name": "Rank Removal",
+    "rating": 3500,
+    "tags": [
+      "math"
+    ],
+    "statement": "F. Rank Removal\ntime limit per test\n2 seconds\nmemory limit per test\n256 megabytes\ninput\nstandard input\noutput\nstandard output\n\nFarmer John is playing a game involving an $$$n \\times n$$$ binary matrix $$$M$$$. Throughout this problem, all matrix $$$\\href{https://en.wikipedia.org/wiki/Rank_(linear_algebra)}{\\text{ranks}}$$$ are computed over the field $$$\\mathbb{F}_2$$$. Initially, the rank of $$$M$$$ is guaranteed to be $$$n$$$.\nOn a move, let $$$r$$$ be the rank of the current matrix $$$M$$$. Farmer John must choose exactly $$$r$$$ distinct entries of $$$M$$$ that are equal to $$$1$$$ and change all of them to $$$0$$$.\nFarmer John wants to turn $$$M$$$ into the zero matrix using the minimum possible number of moves.\nFor each test case, output the minimum number of moves and any sequence of moves that achieves it.\n\nInput\nEach test contains multiple test cases. The first line contains the number of test cases $$$t$$$ ($$$1 \\le t \\le 10^4$$$). The description of the test cases follows.\nThe first line of each test case contains two integers $$$n$$$ and $$$m$$$ ($$$2 \\le n \\le 300, n \\le m \\le n^2$$$) \u2014 the size of the matrix and the number of entries equal to $$$1$$$.\nEach of the next $$$m$$$ lines contains two integers $$$x_i$$$ and $$$y_i$$$ ($$$1 \\le x_i,y_i \\le n$$$), denoting that $$$M_{x_i,y_i}=1$$$.\nAll other entries of $$$M$$$ are equal to $$$0$$$.\nIt is guaranteed that all given cells are distinct.\nIt is guaranteed that the rank of $$$M$$$ over $$$\\mathbb{F}_2$$$ is $$$n$$$ for every test case.\nIt is guaranteed that the sum of $$$m$$$ over all test cases does not exceed $$$300^2$$$.\n\nOutput\nFor each test case, first output an integer $$$k$$$ \u2014 the minimum number of moves needed to turn $$$M$$$ into the zero matrix.\nThen output $$$k$$$ lines, each describing one move.\nFor each move, let $$$r$$$ be the rank of the current matrix before the move. Output the integer $$$r$$$ on a new line. Then, output $$$r$$$ pairs of integers $$$x_i$$$ and $$$y_i$$$ representing the cells of a matrix we are changing to $$$0$$$.\nFor every $$$1 \\le i \\le r$$$, the cell $$$(x_i,y_i)$$$ must contain a $$$1$$$ in the current matrix before the move. All chosen cells in the same move must be distinct.\nIf there are multiple optimal sequences of moves, you may output any of them.",
+    "samples": [
+      {
+        "input": "2\n2 2\n1 1\n2 2\n3 5\n1 1\n1 2\n2 2\n2 3\n3 3",
+        "output": "1\n2\n1 1\n2 2\n2\n3\n1 2\n2 3\n3 3\n2\n1 1\n2 2"
+      }
+    ],
+    "csrf": "6337e707a3405b3998dcebd67c390c9b",
+    "ftaa": "fhh8klj2brpmyratpe",
+    "bfaa": "43f02d372b3f6032748c8f668bb44916",
+    "languages": {
+      "87": "Java 21 64bit",
+      "36": "Java 8 32bit",
+      "7": "Python 2.7.18",
+      "31": "Python 3.13.2",
+      "34": "JavaScript V8 4.8.0"
+    },
+    "url": "https://codeforces.com/contest/2262/problem/F"
+  },
+  {
+    "contestId": 2263,
+    "contestName": "Codeforces Round 1120 (Div. 2)",
+    "index": "E",
+    "name": "Traveling the World",
+    "rating": 2300,
+    "tags": [
+      "graphs"
+    ],
+    "statement": "E. Traveling the World\ntime limit per test\n2 seconds\nmemory limit per test\n256 megabytes\ninput\nstandard input\noutput\nstandard output\n\nThere are $$$n$$$ islands, numbered from $$$1$$$ to $$$n$$$. The $$$i$$$-th island has value $$$a_i$$$. The values $$$a_1,a_2,\\ldots,a_n$$$ are strictly increasing, and $$$a_1=0$$$.\nFarmer John wants to rearrange the islands. After rearranging them, their values form an array $$$b_1,b_2,\\ldots,b_n$$$, which is a rearrangement of $$$a$$$.\nBessie then travels between islands according to the following rule. Suppose she is currently on the island in position $$$i$$$ after the rearrangement. Then Bessie may travel from the island in position $$$i$$$ to the island in position $$$j$$$ if $$$$$$ b_i + b_j = \\max(b_i,b_{i+1},\\ldots,b_n). $$$$$$\nA rearrangement $$$b$$$ is called good if there exists a sequence of distinct positions $$$p_1,p_2,\\ldots,p_n$$$ such that Bessie can travel from $$$p_i$$$ to $$$p_{i+1}$$$ for every $$$1\\le i \\lt n$$$. In other words, Bessie can visit all positions (and therefore all islands) exactly once by following valid travels.\nCount the number of good rearrangements of the islands. Since the number can be large, output it modulo $$$10^9+7$$$.\n\nInput\nEach test contains multiple test cases. The first line contains the number of test cases $$$t$$$ ($$$1 \\le t \\le 10^4$$$). The description of the test cases follows.\nThe first line of each test case contains $$$n$$$ ($$$4 \\le n \\le 2 \\cdot 10^5$$$).\nThe second line of each test case contains $$$n$$$ distinct integers $$$a_1,a_2,\\ldots,a_n$$$ ($$$0\\le a_i\\le 10^9$$$).\nIt is guaranteed that $$$a_1=0$$$ and $$$a_1 \\lt a_2 \\lt \\cdots \\lt a_n$$$.\nIt is guaranteed that the sum of $$$n$$$ over all test cases does not exceed $$$2\\cdot 10^5$$$.\n\nOutput\nFor each test case, output a single integer \u2014 the number of good rearrangements $$$b$$$ of $$$a$$$, modulo $$$10^9+7$$$.",
+    "samples": [
+      {
+        "input": "3\n6\n0 1 2 3 4 5\n5\n0 3 4 5 6\n4\n0 1 3 4",
+        "output": "12\n0\n4"
+      }
+    ],
+    "csrf": "6337e707a3405b3998dcebd67c390c9b",
+    "ftaa": "fhh8klj2brpmyratpe",
+    "bfaa": "43f02d372b3f6032748c8f668bb44916",
+    "languages": {
+      "87": "Java 21 64bit",
+      "36": "Java 8 32bit",
+      "7": "Python 2.7.18",
+      "31": "Python 3.13.2",
+      "34": "JavaScript V8 4.8.0"
+    },
+    "url": "https://codeforces.com/contest/2263/problem/E"
+  },
+  {
+    "contestId": 2263,
+    "contestName": "Codeforces Round 1120 (Div. 2)",
+    "index": "F",
+    "name": "PLUSworld",
+    "rating": 2900,
+    "tags": [
+      "graphs",
+      "greedy"
+    ],
+    "statement": "F. PLUSworld\ntime limit per test\n2 seconds\nmemory limit per test\n256 megabytes\ninput\nstandard input\noutput\nstandard output\n\nFarmer John is building PLUSworld, a giant barn complex with $$$n$$$ barns numbered from $$$1$$$ to $$$n$$$. For each $$$1 \\le i \\le n$$$, there is currently a one-way walkway from barn $$$i$$$ to barn $$$a_i$$$.\nBefore opening PLUSworld, Farmer John wants to reconfigure the roads so that, for every $$$1 \\le i \\le n$$$, the road from barn $$$i$$$ points to barn $$$b_i$$$. The target roads have the special property that each road points to its own barn or to a higher-numbered barn $$$(i \\le b_i)$$$.\nTo do this, he sends Bessie to one barn of his choice. Let $$$p$$$ be the barn where Bessie is currently located. Bessie may perform the following operations any number of times:\n  Operation $$$1$$$: Increase the destination of the road from the current barn by $$$1$$$. More formally, set $$$a_p := a_p + 1$$$. This operation may only be performed if $$$a_p  \\lt  n$$$.\n Operation $$$2$$$: Follow the road from the current barn. More formally, set $$$p := a_p$$$.\nOperation $$$1$$$ changes the array $$$a$$$, but Bessie stays at the same barn. Operation $$$2$$$ changes Bessie's current barn, but does not change the array.\nYour goal is to make the array $$$a$$$ equal to the array $$$b$$$.\nDetermine whether this is possible. If it is possible, output any valid starting barn and any sequence of operations that makes $$$a=b$$$.\nIt can be shown that if a solution exists, then there exists one using at most $$$2n^2$$$ operations.\n\nInput\nEach test contains multiple test cases. The first line contains the number of test cases $$$t$$$ ($$$1 \\le t \\le 10^4$$$). The description of the test cases follows.\nThe first line of each test case contains a single integer $$$n$$$ ($$$1\\le n\\le 1000$$$).\nThe second line contains $$$n$$$ integers $$$a_1,a_2,\\ldots,a_n$$$ ($$$1\\le a_i\\le n$$$).\nThe third line contains $$$n$$$ integers $$$b_1,b_2,\\ldots,b_n$$$ ($$$\\color{red}{i\\le b_i}\\le n$$$).\nIt is guaranteed that the sum of $$$n^2$$$ over all test cases does not exceed $$$1000^2$$$.\n\nOutput\nFor each test case, if it is impossible to make $$$a$$$ equal to $$$b$$$, output a single integer $$$-1$$$.\nOtherwise, output two lines.\nOn the first line, output two integers $$$o$$$ and $$$p$$$ \u2014 the number of operations you will perform and the initial index you choose ($$$0 \\leq o \\leq 2n^2$$$, $$$1 \\leq p \\leq n$$$).\nOn the second line, output $$$o$$$ integers $$$c_1,c_2,\\ldots,c_o$$$ ($$$1\\le c_i\\le 2$$$), where $$$c_i$$$ is the type of the $$$i$$$-th operation.\nIf $$$c_i=1$$$, you perform operation $$$1$$$ and set $$$a_p:=a_p+1$$$. This operation may only be used if $$$a_p  \\lt  n$$$ at that moment.\nIf $$$c_i=2$$$, you perform operation $$$2$$$ and set $$$p:=a_p$$$.\nAfter performing all $$$o$$$ operations, the array $$$a$$$ must be equal to $$$b$$$.\nIf there are multiple valid answers, you may output any of them.",
+    "samples": [
+      {
+        "input": "9\n3\n1 2 3\n2 3 3\n2\n2 2\n1 2\n5\n1 1 1 4 5\n2 3 4 5 5\n3\n1 1 1\n1 2 3\n3\n1 1 1\n3 2 3\n3\n1 1 3\n1 2 3\n4\n1 1 1 4\n3 3 4 4\n4\n1 4 3 4\n1 4 3 4\n5\n1 3 4 5 4\n2 3 4 5 5",
+        "output": "5 1\n1 2 1 2 2 \n-1\n12 1\n1 2 1 1 2 1 1 1 2 1 2 2 \n-1\n-1\n2 2\n1 2 \n12 1\n1 1 2 1 2 1 1 2 1 1 2 2 \n0 1\n7 1\n1 2 2 2 2 1 2 "
+      }
+    ],
+    "csrf": "6337e707a3405b3998dcebd67c390c9b",
+    "ftaa": "fhh8klj2brpmyratpe",
+    "bfaa": "43f02d372b3f6032748c8f668bb44916",
+    "languages": {
+      "87": "Java 21 64bit",
+      "36": "Java 8 32bit",
+      "7": "Python 2.7.18",
+      "31": "Python 3.13.2",
+      "34": "JavaScript V8 4.8.0"
+    },
+    "url": "https://codeforces.com/contest/2263/problem/F"
+  },
+  {
+    "contestId": 2264,
+    "contestName": "Codeforces Round 1121 (Div. 2)",
+    "index": "F",
+    "name": "Deranged Calculator",
+    "rating": 2800,
+    "tags": [
+      "constructive algorithms",
+      "implementation",
+      "math"
+    ],
+    "statement": "F. Deranged Calculator\ntime limit per test\n2 seconds\nmemory limit per test\n256 megabytes\ninput\nstandard input\noutput\nstandard output\n\nHacks are disabled on this problem.\nWe are excited to introduce a new language for this Codeforces round: the Deranged Calculator language (DC).\nThe DC language is a simplified programming language with some weird constraints. It only supports a single expression on one line and only has a single positive integer $$$n$$$ as input. The syntax of the expression is similar to that of most programming languages (in fact, the expression is valid Python), but it is very limited:\n  Expressions consist of the input parameter $$$n$$$, parenthesized expressions, and calls to the round function. These are joined together by the operators +, -, *, and /.\n Grouping with parentheses () can be used to change the order of operations, as usual.\n The operators * and / have equal precedence and take precedence over + and -, which also have equal precedence. Operators of equal precedence are evaluated from left to right.\n The round function takes a single expression as its argument and rounds its value to the nearest integer, rounding up when the fractional part is exactly $$$0.5$$$. (For example, round(n/(n-n-n-n)) will always evaluate to $$$0$$$, because $$$x/(x-x-x-x)=-\\frac{1}{2}$$$ for a positive integer $$$x$$$. The fractional part is $$$0.5$$$, so it will be rounded up to $$$0$$$.)\n Only the input value $$$n$$$ can be used; no numeric constants are allowed in the program.\n All operations are performed using exact fractional arithmetic, so division does not round and can produce fractions.\nA derangement of $$$n$$$ numbers is a permutation of those numbers in which none of the numbers appears in its original position. For example, the derangements of the sequence $$$[1, 2, 3]$$$ are $$$[2, 3, 1]$$$ and $$$[3, 1, 2]$$$.\nYou are given a single integer $$$k$$$. Your job is to make a valid DC program that, for every integer $$$n$$$ ($$$2 \\le n \\le k$$$), calculates the number of derangements of the sequence $$$[1, 2, \\ldots, n]$$$, when $$$n$$$ is given as input to the DC program. The length of the program should not exceed $$$10\\,000$$$ characters.\nA local testing tool is provided to help you develop your solution. It can be found under Contest Materials.\n\nInput\nThe only line of input contains a single integer $$$k$$$ ($$$k \\in \\{2,3,50\\}$$$).\nYour DC program should output the correct number of derangements for all integers $$$n$$$ such that $$$2 \\le n \\le k$$$.\n\nOutput\nOutput a valid DC expression on a single line. The expression should only consist of the characters round()+-*/ and the length of the expression should not exceed $$$10\\,000$$$ characters.\nYour expression will be run on all integers $$$n$$$ such that $$$2 \\le n \\le k$$$. For each such run, the DC expression should not divide by $$$0$$$ at any time, and its value must be the number of derangements of $$$n$$$.",
+    "samples": [
+      {
+        "input": "2",
+        "output": "n-n/n"
+      },
+      {
+        "input": "3",
+        "output": "n+round(n-n*(n/(n+n)))-n"
+      }
+    ],
+    "csrf": "6337e707a3405b3998dcebd67c390c9b",
+    "ftaa": "fhh8klj2brpmyratpe",
+    "bfaa": "43f02d372b3f6032748c8f668bb44916",
+    "languages": {
+      "87": "Java 21 64bit",
+      "36": "Java 8 32bit",
+      "7": "Python 2.7.18",
+      "31": "Python 3.13.2",
+      "34": "JavaScript V8 4.8.0"
+    },
+    "url": "https://codeforces.com/contest/2264/problem/F"
+  },
+  {
+    "contestId": 2266,
+    "contestName": "Codeforces Round 1122 (Div. 3)",
+    "index": "E",
+    "name": "Prime Destruction",
+    "rating": 1400,
+    "tags": [
+      "brute force",
+      "dp",
+      "math",
+      "number theory"
+    ],
+    "statement": "E. Prime Destruction\ntime limit per test\n2 seconds\nmemory limit per test\n256 megabytes\ninput\nstandard input\noutput\nstandard output\n\nYou are given a multiset $$$a$$$ consisting of $$$n$$$ positive integers.\nYou may perform the following operation any number of times (possibly zero):\n  Choose an integer $$$x  \\gt  1$$$ from the multiset and a prime divisor $$$p$$$ of $$$x$$$. Remove one occurrence of $$$x$$$ from the multiset and add $$$p$$$ copies of $$$\\frac{x}{p}$$$.\nYou are also given an integer $$$k$$$ ($$$1 \\le k \\le n$$$). Let $$$f(k)$$$ be the minimum number of operations required, starting from the original multiset, until every integer in the multiset is at most $$$k$$$.\nFind $$$f(k)$$$.\n\nInput\nEach test contains multiple test cases. The first line contains the number of test cases $$$t$$$ ($$$1 \\le t \\le 10^4$$$). The description of the test cases follows.\nThe first line of each test case contains two integers $$$n$$$ and $$$k$$$ ($$$1 \\le k \\le n \\le 2 \\cdot 10^5$$$) \u2014 the initial size of the multiset and the given integer, respectively.\nThe second line of each test case contains $$$n$$$ integers $$$a_1, a_2, \\ldots, a_n$$$ ($$$1 \\le a_i \\le n$$$) \u2014 the elements of the multiset.\nIt is guaranteed that the sum of $$$n$$$ over all test cases does not exceed $$$2 \\cdot 10^5$$$.\n\nOutput\nFor each test case, print a single integer $$$f(k)$$$.",
+    "samples": [
+      {
+        "input": "6\n1 1\n1\n6 2\n6 6 4 3 2 1\n8 1\n8 6 4 3 2 1 8 6\n12 3\n12 10 9 8 7 6 5 4 3 2 1 12\n10 9\n10 9 8 7 6 5 4 3 2 1\n5 5\n5 4 3 2 1",
+        "output": "0\n4\n25\n15\n1\n0"
+      }
+    ],
+    "csrf": "6337e707a3405b3998dcebd67c390c9b",
+    "ftaa": "fhh8klj2brpmyratpe",
+    "bfaa": "43f02d372b3f6032748c8f668bb44916",
+    "languages": {
+      "87": "Java 21 64bit",
+      "36": "Java 8 32bit",
+      "7": "Python 2.7.18",
+      "31": "Python 3.13.2",
+      "34": "JavaScript V8 4.8.0"
+    },
+    "url": "https://codeforces.com/contest/2266/problem/E"
+  },
+  {
+    "contestId": 2266,
+    "contestName": "Codeforces Round 1122 (Div. 3)",
+    "index": "F",
+    "name": "MEX Replacement",
+    "rating": 2000,
+    "tags": [
+      "binary search",
+      "brute force",
+      "greedy",
+      "implementation",
+      "math",
+      "sortings"
+    ],
+    "statement": "F. MEX Replacement\ntime limit per test\n2 seconds\nmemory limit per test\n256 megabytes\ninput\nstandard input\noutput\nstandard output\n\nYou are given a multiset of non-negative integers in compressed form. That is, for each value $$$x_i$$$ in the multiset, you know the number of its occurrences $$$y_i$$$.\nIn one operation, you may choose any non-empty collection of elements currently in the multiset, remove all chosen elements, and insert one element equal to their $$$\\operatorname{MEX}$$$$$$^{\\text{\u2217}}$$$.\nYou may perform the operation any number of times, possibly zero.\nFind the maximum integer that can appear in the multiset at any moment.\n$$$^{\\text{\u2217}}$$$The minimum excluded (MEX) of a collection of integers $$$c_1,c_2,\\ldots,c_k$$$ is the smallest non-negative integer $$$x$$$ that does not occur in the collection.\n\nInput\nThe first line contains an integer $$$t$$$ ($$$1 \\le t \\le 10^4$$$) \u2014 the number of test cases.\nThe first line of each test case contains an integer $$$n$$$ ($$$1 \\le n \\le 2 \\cdot 10^5$$$) \u2014 the number of distinct integers in the initial multiset.\nEach of the next $$$n$$$ lines contains two integers $$$x_i$$$ and $$$y_i$$$ ($$$0 \\le x_i \\le 10^9$$$, $$$1 \\le y_i \\le 10^9$$$), indicating that the integer $$$x_i$$$ occurs exactly $$$y_i$$$ times in the initial multiset.\nThe integers $$$x_1,x_2,\\ldots,x_n$$$ are pairwise distinct.\nIt is guaranteed that the sum of $$$n$$$ over all test cases does not exceed $$$2 \\cdot 10^5$$$.\n\nOutput\nFor each test case, output one integer \u2014 the maximum integer that can appear in the multiset at any moment.",
+    "samples": [
+      {
+        "input": "10\n4\n2 2\n0 3\n4 1\n1 2\n1\n10 1\n1\n2 3\n3\n0 1\n2 2\n3 1\n3\n0 4\n1 2\n2 1\n1\n0 100\n2\n2 7\n3 1\n2\n0 1\n3 3\n3\n0 1\n1 1\n59 1\n4\n0 5\n1 1\n2 3\n3 1",
+        "output": "5\n10\n3\n4\n4\n7\n4\n3\n59\n5"
+      }
+    ],
+    "csrf": "6337e707a3405b3998dcebd67c390c9b",
+    "ftaa": "fhh8klj2brpmyratpe",
+    "bfaa": "43f02d372b3f6032748c8f668bb44916",
+    "languages": {
+      "87": "Java 21 64bit",
+      "36": "Java 8 32bit",
+      "7": "Python 2.7.18",
+      "31": "Python 3.13.2",
+      "34": "JavaScript V8 4.8.0"
+    },
+    "url": "https://codeforces.com/contest/2266/problem/F"
+  },
+  {
+    "contestId": 2267,
+    "contestName": "Codeforces Round 1123 (Div. 2)",
+    "index": "E",
+    "name": "Clean Substrings",
+    "rating": 2000,
+    "tags": [
+      "combinatorics",
+      "data structures",
+      "math"
+    ],
+    "statement": "E. Clean Substrings\ntime limit per test\n2 seconds\nmemory limit per test\n256 megabytes\ninput\nstandard input\noutput\nstandard output\n\nA binary string $$$t$$$ of length $$$m$$$ is called clean if $$$t_i = t_{i+1}$$$ for all $$$1\\le i\\lt m$$$.\nThe chief engineer of the country has made another discovery. He invented a smart robot that can perform the following operation on any binary string $$$t$$$ for one coin:\n  Choose any clean substring$$$^{\\text{\u2217}}$$$ of the string $$$t$$$.\n Invert all elements of the substring (change $$$0$$$ to $$$1$$$ and vice versa).\nDefine the beauty of a string $$$t$$$ as the minimum number of coins needed to make it clean. Define the power of a string $$$t$$$ as the sum of the beauties of all its substrings.\nYou are given a binary string $$$s$$$ of length $$$n$$$. The engineer's competitors are going to modify the string exactly $$$q$$$ times. Each modification is described by one number $$$i$$$. After the modification, $$$s_i$$$ is inverted. Your task is to compute the power of the string $$$s$$$ before and after each modification.\n$$$^{\\text{\u2217}}$$$A string $$$a$$$ is a substring of a string $$$b$$$ if $$$a$$$ can be obtained from $$$b$$$ by the deletion of several (possibly, zero or all) characters from the beginning and several (possibly, zero or all) characters from the end.\n\nInput\nEach test contains multiple test cases. The first line contains the number of test cases $$$t$$$ ($$$1 \\le t \\le 10^4$$$). The description of the test cases follows.\nThe first line of each test case contains two integers $$$n$$$ and $$$q$$$ ($$$1\\le n, q\\le 2\\cdot 10^5$$$) \u2014 the length of the binary string and the number of modifications.\nThe second line of each test case contains the binary string $$$s$$$.\nThe next $$$q$$$ lines of each test case contain one integer $$$i$$$ ($$$1\\le i\\le n$$$) \u2014 the description of the modifications.\nIt is guaranteed that the sum of all $$$n$$$ values and the sum of all $$$q$$$ values over all test cases do not exceed $$$2\\cdot 10^5$$$.\n\nOutput\nFor each test case, output $$$q + 1$$$ integers separated by spaces \u2014 the answer before the modifications and after each modification of the string.",
+    "samples": [
+      {
+        "input": "4\n3 1\n110\n2\n4 2\n1010\n1\n2\n8 4\n10101110\n3\n5\n2\n3\n10 5\n1100101110\n1\n6\n10\n7\n3",
+        "output": "2 2 \n7 5 5 \n36 23 22 25 26 \n61 66 41 35 59 60 "
+      }
+    ],
+    "csrf": "6337e707a3405b3998dcebd67c390c9b",
+    "ftaa": "fhh8klj2brpmyratpe",
+    "bfaa": "43f02d372b3f6032748c8f668bb44916",
+    "languages": {
+      "87": "Java 21 64bit",
+      "36": "Java 8 32bit",
+      "7": "Python 2.7.18",
+      "31": "Python 3.13.2",
+      "34": "JavaScript V8 4.8.0"
+    },
+    "url": "https://codeforces.com/contest/2267/problem/E"
+  },
+  {
+    "contestId": 2268,
+    "contestName": "Codeforces Round 1124 (Div. 1)",
+    "index": "E",
+    "name": "Kia Kio and Tree of Life",
+    "rating": 2700,
+    "tags": [
+      "data structures",
+      "fft",
+      "math",
+      "trees"
+    ],
+    "statement": "E. Kia Kio and Tree of Life\ntime limit per test\n3 seconds\nmemory limit per test\n256 megabytes\ninput\nstandard input\noutput\nstandard output\n\nAfter unlocking the crystal terminal, Kia and Kio discovered the blueprint for the kingdom's forgotten heart: a digital Tree of Life, seeded by the array $$$a_1, a_2, \\ldots, a_n$$$.\nTo restore its pulse, they had to weave every possible incarnation of the Tree together. For any continuous segment, Kia would gently select an index $$$i$$$ to plant the root. Trusting her vision, Kio would carefully weave the branches of life\u00a0\u2014 crafting the left subtree from the preceding segment $$$[1, i-1]$$$ and the right subtree from the succeeding segment $$$[i+1, n]$$$.\nOnce a Tree of Life bloomed, its vital resonance, $$$f(\\text{tree})$$$, was defined by its bonds. If one were to sever any of the $$$n-1$$$ delicate branches, the Tree would split into two disconnected halves, releasing an energy of $$$X+Y$$$, where $$$X$$$ and $$$Y$$$ are the bitwise XOR sums of the array elements remaining in the first and second halves, respectively.\nThe total power of the Tree, $$$f(\\text{tree})$$$, is the sum of these released energies across all $$$n-1$$$ branches.\nKia wanted to know the ultimate vital force they could awaken. Help them compute the total sum of $$$f(\\text{tree})$$$ across every valid Tree of Life born from their shared bond, modulo $$$998\\,244\\,353$$$.\n\nInput\nEach test contains multiple test cases. The first line contains the number of test cases $$$t$$$ ($$$1 \\le t \\le 10^4$$$). The description of the test cases follows.\nThe first line of each test case contains a single integer $$$n$$$ ($$$1 \\le n \\le 2\\cdot10^5$$$)\u00a0\u2014 the size of the array.\nThe second line contains $$$n$$$ integers $$$a_1,a_2,\\ldots,a_n$$$ ($$$0 \\le a_i  \\lt  2^{18}$$$).\nIt is guaranteed that the sum of $$$n$$$ over all test cases does not exceed $$$2\\cdot10^5$$$.\n\nOutput\nFor each test case, print a single integer\u00a0\u2014 the total sum of $$$f(\\text{tree})$$$ across all valid Trees of Life, modulo $$$998\\,244\\,353$$$.",
+    "samples": [
+      {
+        "input": "5\n2\n1 2\n3\n1 1 1\n3\n1 2 3\n4\n2 1 4 7\n5\n5 12 9 14 1",
+        "output": "6\n10\n40\n318\n2520"
+      }
+    ],
+    "csrf": "6337e707a3405b3998dcebd67c390c9b",
+    "ftaa": "fhh8klj2brpmyratpe",
+    "bfaa": "43f02d372b3f6032748c8f668bb44916",
+    "languages": {
+      "87": "Java 21 64bit",
+      "36": "Java 8 32bit",
+      "7": "Python 2.7.18",
+      "31": "Python 3.13.2",
+      "34": "JavaScript V8 4.8.0"
+    },
+    "url": "https://codeforces.com/contest/2268/problem/E"
+  },
+  {
+    "contestId": 2268,
+    "contestName": "Codeforces Round 1124 (Div. 1)",
+    "index": "F",
+    "name": "Deglado",
+    "rating": 3500,
+    "tags": [
+      "constructive algorithms"
+    ],
+    "statement": "F. Deglado\ntime limit per test\n2 seconds\nmemory limit per test\n512 megabytes\ninput\nstandard input\noutput\nstandard output\n\nYou are given a $$$2n \\times 2n$$$ grid $$$a$$$ where each column is a permutation$$$^{\\text{\u2217}}$$$ of length $$$2n$$$.\nWe want to sort all columns in ascending order from top to bottom by performing the following operation:\n  Choose a $$$2 \\times 2$$$ subgrid and swap the two top elements with the two bottom elements.More formally, you can choose two integers $$$i$$$ and $$$j$$$ ($$$1 \\leq i, j  \\lt  2n$$$), then swap $$$a_{i,j}$$$ with $$$a_{i+1,j}$$$ and swap $$$a_{i,j+1}$$$ with $$$a_{i+1,j+1}$$$.\n\nYou have to sort all columns using at most $$$n \\cdot \\binom{2n}{2} + 9n$$$ operations, or determine that it is impossible.\nNote that you do not need to minimize the number of operations.\n$$$^{\\text{\u2217}}$$$A permutation of length $$$m$$$ is an array consisting of $$$m$$$ distinct integers from $$$1$$$ to $$$m$$$ in arbitrary order. For example, $$$[2,3,1,5,4]$$$ is a permutation, but $$$[1,2,2]$$$ is not a permutation ($$$2$$$ appears twice in the array), and $$$[1,3,4]$$$ is also not a permutation ($$$m=3$$$ but there is $$$4$$$ in the array).\n\nInput\nEach test contains multiple test cases. The first line contains the number of test cases $$$t$$$ ($$$1 \\le t \\le 500$$$). The description of the test cases follows.\nThe first line of each test contains a single integer $$$n$$$ ($$$1 \\leq n \\leq 80$$$).\nThe $$$i$$$-th line of the next $$$2n$$$ lines contains $$$2n$$$ integers $$$a_{i,1},a_{i,2},\\ldots,a_{i,2n}$$$ ($$$1 \\leq a_{i,j} \\leq 2n$$$) \u2014 the elements of the $$$i$$$-th row of the grid.\nIt is guaranteed that every column in the grid forms a permutation of length $$$2n$$$.\nIt is guaranteed that the sum of $$$n^3$$$ over all test cases does not exceed $$$80^3$$$.\n\nOutput\nFor each test case, if it is impossible to sort all columns in at most $$$n \\cdot \\binom{2n}{2} + 9n$$$ operations, print $$$-1$$$ in a single line.\nOtherwise, in the first line print a single integer $$$k$$$ ($$$0 \\leq k \\leq n \\cdot \\binom{2n}{2} + 9n$$$) \u2014 the number of operations.\nThen $$$k$$$ lines follow, the $$$w$$$-th line containing two integers $$$i_w$$$ and $$$j_w$$$ ($$$1 \\leq i_w, j_w  \\lt  2n$$$) \u2014 you choose $$$i_w$$$ and $$$j_w$$$ in the $$$w$$$-th operation.",
+    "samples": [
+      {
+        "input": "3\n1\n2 2\n1 1\n1\n1 2\n2 1\n2\n1 2 2 1\n2 1 3 3\n4 4 1 2\n3 3 4 4",
+        "output": "1\n1 1\n-1\n3\n3 1\n2 3\n1 2"
+      }
+    ],
+    "csrf": "6337e707a3405b3998dcebd67c390c9b",
+    "ftaa": "fhh8klj2brpmyratpe",
+    "bfaa": "43f02d372b3f6032748c8f668bb44916",
+    "languages": {
+      "87": "Java 21 64bit",
+      "36": "Java 8 32bit",
+      "7": "Python 2.7.18",
+      "31": "Python 3.13.2",
+      "34": "JavaScript V8 4.8.0"
+    },
+    "url": "https://codeforces.com/contest/2268/problem/F"
+  },
+  {
+    "contestId": 2269,
+    "contestName": "Codeforces Round 1124 (Div. 2)",
+    "index": "E",
+    "name": "KiaKio and Energy Intervals",
+    "rating": 2300,
+    "tags": [
+      "binary search",
+      "bitmasks",
+      "data structures",
+      "divide and conquer"
+    ],
+    "statement": "E. KiaKio and Energy Intervals\ntime limit per test\n2 seconds\nmemory limit per test\n256 megabytes\ninput\nstandard input\noutput\nstandard output\n\nKia and Kio found a glowing array $$$a_1, a_2, \\ldots, a_n$$$ inside a crystal terminal in the ruins of an ancient digital kingdom.\nThe terminal works like this. Kia picks a segment of the array: any two indices $$$l$$$ and $$$r$$$ with $$$l  \\lt  r$$$ (so the segment always has at least two elements). Kio then finds the strongest energy in that segment, $$$m = \\max\\left(a_l, a_{l+1}, \\ldots, a_r\\right)$$$, and the terminal masks every element of the segment with $$$m$$$ (bitwise AND), then fuses the results together (bitwise XOR):\n$$$$$$ (a_l \\,\\&\\, m)\\oplus(a_{l+1} \\,\\&\\, m)\\oplus\\cdots\\oplus(a_r \\,\\&\\, m). $$$$$$\nThat number is the energy released.\nKia wants the strongest possible blast. Over all valid segments $$$(l, r)$$$, what is the largest energy the terminal can produce?\nHere, $$$\\&$$$ denotes the bitwise AND operation, and $$$\\oplus$$$ denotes the bitwise XOR operation.\n\nInput\nEach test contains multiple test cases. The first line contains the number of test cases $$$t$$$ ($$$1 \\le t \\le 10^4$$$). The description of the test cases follows.\nThe first line of each test case contains a single integer $$$n$$$ ($$$2 \\le n \\le 2\\cdot10^5$$$)\u00a0\u2014 the size of the array.\nThe second line contains $$$n$$$ integers $$$a_1,a_2,\\ldots,a_n$$$ ($$$0 \\le a_i  \\lt  2^{18}$$$).\nIt is guaranteed that the sum of $$$n$$$ over all test cases does not exceed $$$2\\cdot10^5$$$.\n\nOutput\nFor each test case, print a single integer\u00a0\u2014 the maximum possible value of\n$$$$$$ (a_l \\,\\&\\, m)\\oplus(a_{l+1} \\,\\&\\, m)\\oplus\\cdots\\oplus(a_r \\,\\&\\, m) $$$$$$\namong all pairs $$$(l,r)$$$ satisfying $$$l \\lt r$$$.",
+    "samples": [
+      {
+        "input": "4\n5\n1 7 3 7 2\n3\n3 1 2\n5\n1 5 2 3 4\n4\n3 5 2 6",
+        "output": "6\n2\n5\n5"
+      }
+    ],
+    "csrf": "6337e707a3405b3998dcebd67c390c9b",
+    "ftaa": "fhh8klj2brpmyratpe",
+    "bfaa": "43f02d372b3f6032748c8f668bb44916",
+    "languages": {
+      "87": "Java 21 64bit",
+      "36": "Java 8 32bit",
+      "7": "Python 2.7.18",
+      "31": "Python 3.13.2",
+      "34": "JavaScript V8 4.8.0"
+    },
+    "url": "https://codeforces.com/contest/2269/problem/E"
+  },
+  {
+    "contestId": 2269,
+    "contestName": "Codeforces Round 1124 (Div. 2)",
+    "index": "F",
+    "name": "AghaBalaSar and Hamed",
+    "rating": 2600,
+    "tags": [
+      "dp"
+    ],
+    "statement": "F. AghaBalaSar and Hamed\ntime limit per test\n2 seconds\nmemory limit per test\n256 megabytes\ninput\nstandard input\noutput\nstandard output\n\nYou are given a permutation$$$^{\\text{\u2217}}$$$ $$$p$$$ of length $$$n$$$.\nFor each index $$$i$$$, you may move in one step to:\n  any index $$$j \\lt i$$$, or\n the first index $$$j \\gt i$$$ such that $$$p_j \\gt p_i$$$ (if such an index exists),\n In other words:   You can always move to any position on the left.\n On the right, you can move only to the nearest position whose value is strictly greater than the current one.\n For every pair of indices $$$(i,j)$$$, let $$$f(i,j)$$$ be the minimum number of steps needed to move from $$$i$$$ to $$$j$$$. Note that if we cannot reach $$$j$$$ from $$$i$$$, then $$$f(i,j)=0$$$.Your task is to compute:\n$$$$$$\\sum_{1 \\le i,j \\le n} f(i,j).$$$$$$\n$$$^{\\text{\u2217}}$$$A permutation of length $$$n$$$ is an array consisting of $$$n$$$ distinct integers from $$$1$$$ to $$$n$$$ in arbitrary order. For example, $$$[2,3,1,5,4]$$$ is a permutation, but $$$[1,2,2]$$$ is not a permutation ($$$2$$$ appears twice in the array), and $$$[1,3,4]$$$ is also not a permutation ($$$n=3$$$ but there is $$$4$$$ in the array).\n\nInput\nEach test contains multiple test cases. The first line contains the number of test cases $$$t$$$ ($$$1 \\le t \\le 10^4$$$). The description of the test cases follows.\nThe first line of each test case contains a single integer $$$n$$$ ($$$1 \\leq n \\leq 10^6$$$) \u2014 the length of $$$p$$$.\nThe second line of each test case contains $$$n$$$ distinct integers $$$p_1,p_2,\\ldots,p_n$$$ ($$$1\\le p_i\\le n$$$) \u2014 the elements of $$$p$$$.\nIt is guaranteed that the sum of $$$n$$$ over all test cases does not exceed $$$10^6$$$.\n\nOutput\nFor each test case, print a single integer \u2014 the value of $$$\\sum\\limits_{1 \\le i,j \\le n} f(i,j)$$$.",
+    "samples": [
+      {
+        "input": "6\n2\n1 2\n2\n2 1\n3\n1 3 2\n3\n1 2 3\n5\n1 3 5 2 4\n7\n6 2 4 3 7 5 1",
+        "output": "2\n1\n4\n7\n15\n38"
+      }
+    ],
+    "csrf": "6337e707a3405b3998dcebd67c390c9b",
+    "ftaa": "fhh8klj2brpmyratpe",
+    "bfaa": "43f02d372b3f6032748c8f668bb44916",
+    "languages": {
+      "87": "Java 21 64bit",
+      "36": "Java 8 32bit",
+      "7": "Python 2.7.18",
+      "31": "Python 3.13.2",
+      "34": "JavaScript V8 4.8.0"
+    },
+    "url": "https://codeforces.com/contest/2269/problem/F"
+  },
+  {
+    "contestId": 2234,
+    "contestName": "Codeforces Round 1102 (Div. 2)",
+    "index": "E",
+    "name": "Vlad, Misha and Two Arrays",
+    "rating": 2100,
+    "tags": [
+      "brute force",
+      "combinatorics",
+      "dfs and similar",
+      "divide and conquer",
+      "math"
+    ],
+    "statement": "E. Vlad, Misha and Two Arrays\ntime limit per test\n2 seconds\nmemory limit per test\n256 megabytes\ninput\nstandard input\noutput\nstandard output\n\nVlad thought of a permutation $$$p$$$ of length $$$n$$$. After that, for each $$$i$$$ from $$$1$$$ to $$$n$$$, he counted the number of pairs $$$l, r$$$ such that $$$1 \\leq l \\leq r \\leq n$$$ and the minimum number among $$$p_l, p_{l+1}, \\ldots, p_r$$$ is equal to $$$p_i$$$, and wrote this number into $$$a_i$$$.\nNow he gave Misha the numbers $$$a_1, a_2, \\ldots, a_n$$$ and asked him to guess the permutation $$$p$$$. However, Misha quickly realized that it is not always possible to uniquely restore the permutation $$$p$$$. Therefore, he decided to surprise Vlad and tell him the number of suitable permutations $$$p$$$ modulo $$$10^9+7$$$. Help him with this. Note that Vlad could have made a mistake, and there may be no such permutations.\n\nInput\nEach test contains multiple test cases. The first line contains the number of test cases $$$t$$$ ($$$1 \\le t \\le 10^4$$$). The description of the test cases follows.\nIn the first line of each test case, a natural number $$$n$$$ ($$$1 \\leq n \\leq 5 \\cdot 10^5$$$) is given \u2014 the size of the permutation.\nIn the second line of each test case, $$$n$$$ numbers $$$a_1, a_2, \\ldots a_n$$$ ($$$1 \\leq a_i \\leq 10^{12}$$$) are given \u2014 the array $$$a$$$ that Vlad gave to Misha.\nIt is guaranteed that the sum of $$$n$$$ over all test cases does not exceed $$$5 \\cdot 10^5$$$.\n\nOutput\nFor each test case, output the number of suitable permutations modulo $$$10^9+7$$$.",
+    "samples": [
+      {
+        "input": "4\n3\n1 4 1\n4\n1 2 3 4\n4\n1 6 1 2\n3\n3 3 3",
+        "output": "2\n1\n3\n0"
+      }
+    ],
+    "csrf": "6337e707a3405b3998dcebd67c390c9b",
+    "ftaa": "fhh8klj2brpmyratpe",
+    "bfaa": "43f02d372b3f6032748c8f668bb44916",
+    "languages": {
+      "87": "Java 21 64bit",
+      "36": "Java 8 32bit",
+      "7": "Python 2.7.18",
+      "31": "Python 3.13.2",
+      "34": "JavaScript V8 4.8.0"
+    },
+    "url": "https://codeforces.com/contest/2234/problem/E"
+  },
+  {
+    "contestId": 2234,
+    "contestName": "Codeforces Round 1102 (Div. 2)",
+    "index": "F",
+    "name": "Vessels, Heights and Two Versions (Hard Version)",
+    "rating": 2000,
+    "tags": [
+      "data structures",
+      "dfs and similar",
+      "dsu",
+      "greedy",
+      "implementation",
+      "two pointers"
+    ],
+    "statement": "F. Vessels, Heights and Two Versions (Hard Version)\ntime limit per test\n2 seconds\nmemory limit per test\n256 megabytes\ninput\nstandard input\noutput\nstandard output\n\nThis is the hard version of the problem. The difference between the versions is that in this version, constraints on $$$n$$$ and on the number of test cases are higher. You can hack only if you solved all versions of this problem.\nThere are $$$n$$$ communicating vessels of infinite height arranged in a circle. The base area of each vessel is $$$1$$$ cm$$$^2$$$, and between the $$$i$$$-th vessel and the $$$(i \\bmod n) + 1$$$-th vessel there is a connection of negligible volume at height $$$h_i$$$ cm. For each vessel $$$i$$$, find the maximum total volume of water in cm$$$^3$$$ that can be placed in these vessels under the condition that the $$$i$$$-th vessel remains empty.\nFormally, you are given an array $$$h_1, h_2, \\ldots, h_n$$$. A cyclic array of non-negative integers $$$w_1, w_2, \\ldots, w_n$$$ is called good if the following holds:\n For every $$$i$$$ from $$$1$$$ to $$$n$$$, if $$$\\max(w_i, w_{i \\bmod n + 1})  \\gt  h_i$$$, then $$$w_i = w_{i \\bmod n + 1}$$$. In other words, if the maximum of two neighboring elements of the array $$$w$$$ exceeds the corresponding element of the array $$$h$$$, then these two neighboring elements of the array $$$w$$$ must be equal.\nFor each $$$i$$$ from $$$1$$$ to $$$n$$$, output the maximum possible sum $$$w_1 + w_2 + \\ldots + w_n$$$ among all good arrays $$$w_1, w_2, \\ldots, w_n$$$, under the condition that $$$w_i = 0$$$.\n\nInput\nEach test contains multiple test cases. The first line contains the number of test cases $$$t$$$ ($$$1 \\le t \\le 10^4$$$). The description of the test cases follows.\nThe first line of each test case contains one integer $$$n$$$ ($$$3 \\le n \\le 2 \\cdot 10^5$$$) \u2014 the number of vessels.\nThe second line of each test case contains $$$n$$$ integers $$$h_1, h_2, \\ldots, h_n$$$ ($$$1 \\le h_i \\le 10^9$$$) \u2014 the heights of the partitions between the vessels.\nIt is guaranteed that the sum of $$$n$$$ over all test cases does not exceed $$$2 \\cdot 10^5$$$.\n\nOutput\nFor each test case, output $$$n$$$ integers \u2014 the $$$l$$$-th integer means the maximum total volume of water in cm$$$^3$$$ in the vessels under the condition that the $$$l$$$-th vessel remains empty.",
+    "samples": [
+      {
+        "input": "4\n4\n1 2 3 4\n5\n5 3 1 5 2\n6\n3 4 2 6 1 5\n7\n1 2 1 4 2 3 5",
+        "output": "6 6 7 9 \n17 16 14 14 17 \n21 21 20 20 21 21 \n17 17 17 17 21 21 22 "
+      }
+    ],
+    "csrf": "6337e707a3405b3998dcebd67c390c9b",
+    "ftaa": "fhh8klj2brpmyratpe",
+    "bfaa": "43f02d372b3f6032748c8f668bb44916",
+    "languages": {
+      "87": "Java 21 64bit",
+      "36": "Java 8 32bit",
+      "7": "Python 2.7.18",
+      "31": "Python 3.13.2",
+      "34": "JavaScript V8 4.8.0"
+    },
+    "url": "https://codeforces.com/contest/2234/problem/F"
+  },
+  {
+    "contestId": 2233,
+    "contestName": "Educational Codeforces Round 191 (Rated for Div. 2)",
+    "index": "F",
+    "name": "Shortest GCD Paths",
+    "rating": 2800,
+    "tags": [
+      "dp",
+      "graphs",
+      "math",
+      "number theory",
+      "shortest paths"
+    ],
+    "statement": "F. Shortest GCD Paths\ntime limit per test\n2 seconds\nmemory limit per test\n512 megabytes\ninput\nstandard input\noutput\nstandard output\n\nYou are given three integers $$$n$$$, $$$a$$$, $$$b$$$. Consider a weighted undirected graph with $$$n$$$ vertices, where for every pair of distinct vertices $$$(u, v)$$$ there is an edge with weight:\n$$$$$$ w(u, v) = \\frac{\\max(u, v)}{\\gcd(u, v)} $$$$$$\nHere $$$\\gcd(x, y)$$$ denotes the greatest common divisor (GCD) of integers $$$x$$$ and $$$y$$$.\nFind the shortest path from vertex $$$a$$$ to vertex $$$b$$$ in this graph.\n\nInput\nThe only line contains three integers $$$n$$$, $$$a$$$, $$$b$$$ ($$$2 \\le n \\le 10^{9}, 1 \\le a, b \\le n, a \\neq b$$$).\n\nOutput\nPrint one integer\u00a0\u2014 the length of the shortest path from vertex $$$a$$$ to vertex $$$b$$$.",
+    "samples": [
+      {
+        "input": "10 9 8",
+        "output": "7"
+      },
+      {
+        "input": "100 16 27",
+        "output": "10"
+      },
+      {
+        "input": "100 55 11",
+        "output": "5"
+      }
+    ],
+    "csrf": "6337e707a3405b3998dcebd67c390c9b",
+    "ftaa": "fhh8klj2brpmyratpe",
+    "bfaa": "43f02d372b3f6032748c8f668bb44916",
+    "languages": {
+      "87": "Java 21 64bit",
+      "36": "Java 8 32bit",
+      "7": "Python 2.7.18",
+      "31": "Python 3.13.2",
+      "34": "JavaScript V8 4.8.0"
+    },
+    "url": "https://codeforces.com/contest/2233/problem/F"
+  },
+  {
+    "contestId": 2237,
+    "contestName": "Order Capital Round 2 (Codeforces Round 1104, Div. 1 + Div. 2)",
+    "index": "E",
+    "name": "Permutation Commutation",
+    "rating": 2100,
+    "tags": [
+      "data structures",
+      "graphs",
+      "greedy"
+    ],
+    "statement": "E. Permutation Commutation\ntime limit per test\n2 seconds\nmemory limit per test\n256 megabytes\ninput\nstandard input\noutput\nstandard output\n\nQuack the Duck has a permutation$$$^{\\text{\u2217}}$$$ $$$a$$$ of length $$$n$$$ and an incomplete sequence $$$b_1,b_2,\\ldots,b_n$$$.\nEach element of $$$b$$$ is either $$$-1$$$ or an integer from $$$1$$$ to $$$n$$$. Each integer from $$$1$$$ to $$$n$$$ appears at most once in $$$b$$$.\nQuack hopes to complete $$$b$$$ into a permutation that commutes with $$$a$$$. In other words, after replacing every $$$-1$$$ in $$$b$$$, the equality $$$a_{b_i}=b_{a_i}$$$ should hold for every $$$1 \\le i \\le n$$$.\nJa the Ghost wants to help Quack. Among all possible ways to complete $$$b$$$, he wants to find the lexicographically smallest$$$^{\\text{\u2020}}$$$ one.\nDetermine whether such a completion exists. If it exists, output the lexicographically smallest valid permutation $$$b$$$. Otherwise, report that it is impossible.\n$$$^{\\text{\u2217}}$$$A permutation of length $$$n$$$ is an array consisting of $$$n$$$ distinct integers from $$$1$$$ to $$$n$$$ in arbitrary order. For example, $$$[2,3,1,5,4]$$$ is a permutation, but $$$[1,2,2]$$$ is not a permutation ($$$2$$$ appears twice in the array), and $$$[1,3,4]$$$ is also not a permutation ($$$n=3$$$ but there is $$$4$$$ in the array).\n$$$^{\\text{\u2020}}$$$An array $$$p$$$ is lexicographically smaller than an array $$$q$$$ of the same size if and only if the following holds:\n  $$$p \\ne q$$$, and in the first position where $$$p$$$ and $$$q$$$ differ, the array $$$p$$$ has a smaller element than the corresponding element in $$$q$$$.\n\nInput\nEach test contains multiple test cases. The first line contains the number of test cases $$$t$$$ ($$$1 \\le t \\le 10^4$$$). The description of the test cases follows.\nThe first line of each test case contains an integer $$$n$$$ ($$$1 \\le n \\le 2 \\cdot 10^5$$$)\u00a0\u2014 the length of the permutation.\nThe second line of each test case contains $$$n$$$ integers $$$a_1,a_2,\\ldots,a_n$$$ ($$$1 \\le a_i \\le n$$$)\u00a0\u2014 the permutation $$$a$$$.\nThe third line of each test case contains $$$n$$$ integers $$$b_1,b_2,\\ldots,b_n$$$ ($$$b_i=-1$$$ or $$$1 \\le b_i \\le n$$$)\u00a0\u2014 the incomplete sequence $$$b$$$.\nIt is guaranteed that each integer from $$$1$$$ to $$$n$$$ appears at most once in $$$b$$$.\nIt is guaranteed that the sum of $$$n$$$ over all test cases does not exceed $$$2 \\cdot 10^5$$$.\n\nOutput\nFor each test case, print \"YES\" if the answer exists, and \"NO\" otherwise.\nYou can output the answer in any case (upper or lower). For example, the strings \"yEs\", \"yes\", \"Yes\", and \"YES\" will be recognized as positive responses.\nIf the answer exists, in the next line output $$$n$$$ integers $$$p_1,p_2,\\ldots,p_n$$$\u00a0\u2014 the lexicographically smallest valid sequence after replacing every $$$-1$$$ in $$$b$$$.\nThe sequence $$$p$$$ must be a permutation, that is, each integer from $$$1$$$ to $$$n$$$ must appear exactly once in $$$p$$$. Also, it must satisfy $$$a_{p_i}=p_{a_i}$$$ for every $$$1 \\le i \\le n$$$.",
+    "samples": [
+      {
+        "input": "12\n3\n2 3 1\n-1 -1 -1\n4\n2 1 4 3\n-1 -1 4 -1\n4\n2 1 4 3\n3 1 -1 -1\n4\n2 1 4 3\n1 -1 -1 2\n5\n2 3 1 5 4\n2 -1 -1 -1 -1\n5\n2 3 1 5 4\n4 -1 -1 -1 -1\n6\n2 3 1 5 6 4\n4 -1 -1 -1 -1 -1\n6\n2 1 4 3 6 5\n-1 3 -1 -1 -1 -1\n6\n3 5 6 2 1 4\n-1 -1 -1 3 6 -1\n7\n2 3 1 5 4 6 7\n-1 -1 -1 -1 -1 7 -1\n8\n2 3 4 1 6 7 8 5\n5 7 -1 -1 -1 -1 -1 -1\n8\n2 3 4 1 6 7 8 5\n5 -1 -1 -1 -1 -1 -1 -1",
+        "output": "YES\n1 2 3\nYES\n1 2 4 3\nNO\nNO\nYES\n2 3 1 4 5\nNO\nYES\n4 5 6 1 2 3\nYES\n4 3 1 2 5 6\nNO\nYES\n1 2 3 4 5 7 6\nNO\nYES\n5 6 7 8 1 2 3 4"
+      }
+    ],
+    "csrf": "6337e707a3405b3998dcebd67c390c9b",
+    "ftaa": "fhh8klj2brpmyratpe",
+    "bfaa": "43f02d372b3f6032748c8f668bb44916",
+    "languages": {
+      "87": "Java 21 64bit",
+      "36": "Java 8 32bit",
+      "7": "Python 2.7.18",
+      "31": "Python 3.13.2",
+      "34": "JavaScript V8 4.8.0"
+    },
+    "url": "https://codeforces.com/contest/2237/problem/E"
+  },
+  {
+    "contestId": 2237,
+    "contestName": "Order Capital Round 2 (Codeforces Round 1104, Div. 1 + Div. 2)",
+    "index": "F",
+    "name": "Paint the Array",
+    "rating": 2400,
+    "tags": [
+      "data structures",
+      "dp",
+      "greedy"
+    ],
+    "statement": "F. Paint the Array\ntime limit per test\n2 seconds\nmemory limit per test\n256 megabytes\ninput\nstandard input\noutput\nstandard output\n\nConsider an array of length $$$n$$$, and a fixed integer $$$m$$$. A painting operation is defined as follows:\n  Choose an interval of length $$$m$$$ and paint it with the values $$$1,2,\\ldots,m$$$ from left to right.Formally, choose an integer $$$l$$$ such that $$$1\\le l\\le n-m+1$$$. Then, for every $$$1\\le i\\le m$$$, position $$$l+i-1$$$ is painted with value $$$i$$$.\n\nIf a position is painted multiple times, only the value painted most recently remains.\nAn array is called valid if it can be obtained by performing some painting operations such that every position is painted at least once.\nGiven an array $$$a_1,a_2,\\ldots,a_n$$$ with $$$1\\le a_i\\le m$$$, find the minimum number of modifications needed to make it valid. One modification changes one element to any integer between $$$1$$$ and $$$m$$$.\n\nInput\nEach test contains multiple test cases. The first line contains the number of test cases $$$t$$$ ($$$1 \\le t \\le 10^4$$$). The description of the test cases follows.\nThe first line of each test case contains two integers $$$n$$$ and $$$m$$$ ($$$1\\le m\\le n\\le 5\\cdot 10^5$$$)\u00a0\u2014 the length of the array and the length of each painted interval.\nThe second line contains $$$n$$$ integers $$$a_1,a_2,\\ldots,a_n$$$ ($$$1\\le a_i\\le m$$$).\nIt is guaranteed that the sum of $$$n$$$ over all test cases does not exceed $$$5\\cdot 10^5$$$.\n\nOutput\nFor each test case, output a single integer\u00a0\u2014 the minimum number of modifications needed to make it valid.",
+    "samples": [
+      {
+        "input": "15\n5 3\n1 2 3 2 3\n4 3\n1 2 2 3\n5 3\n2 1 2 3 2\n5 3\n2 2 2 2 2\n5 4\n1 1 3 4 1\n6 3\n1 1 1 2 1 1\n8 5\n1 2 1 2 3 4 5 1\n5 3\n2 3 1 1 2\n8 4\n1 2 3 2 3 2 3 4\n4 4\n4 3 2 1\n5 1\n1 1 1 1 1\n7 3\n3 3 3 2 1 1 1\n10 3\n1 2 3 1 2 2 3 1 2 3\n7 3\n1 3 2 3 2 1 2\n10 4\n1 4 3 3 2 3 4 4 2 2",
+        "output": "0\n1\n2\n3\n2\n2\n1\n4\n2\n4\n0\n4\n1\n3\n4"
+      }
+    ],
+    "csrf": "6337e707a3405b3998dcebd67c390c9b",
+    "ftaa": "fhh8klj2brpmyratpe",
+    "bfaa": "43f02d372b3f6032748c8f668bb44916",
+    "languages": {
+      "87": "Java 21 64bit",
+      "36": "Java 8 32bit",
+      "7": "Python 2.7.18",
+      "31": "Python 3.13.2",
+      "34": "JavaScript V8 4.8.0"
+    },
+    "url": "https://codeforces.com/contest/2237/problem/F"
+  },
+  {
+    "contestId": 2240,
+    "contestName": "Codeforces Round 1105 (Div. 2)",
+    "index": "E",
+    "name": "Revival",
+    "rating": 2200,
+    "tags": [
+      "constructive algorithms",
+      "data structures",
+      "math"
+    ],
+    "statement": "E. Revival\ntime limit per test\n2.5 seconds\nmemory limit per test\n256 megabytes\ninput\nstandard input\noutput\nstandard output\n\nConsider a permutation $$$p$$$ of $$$1, 2, \\ldots, n$$$. Let $$$s_i$$$ denote the number of inversions in the entire prefix $$$p_1, p_2, \\ldots, p_i$$$, defined as:\n$$$$$$ s_i = \\sum_{1 \\le x  \\lt  y \\le i} [p_x  \\gt  p_y], $$$$$$\nwhere the square parantheses denote the Iverson bracket notation.\nFor each position $$$i$$$ ($$$1 \\le i \\le n$$$), you are given a condition in the form of either $$$p_i = x$$$ or $$$s_i = x$$$. Your task is to reconstruct the original permutation $$$p$$$.\n\nInput\nEach test contains multiple test cases. The first line contains the number of test cases $$$t$$$ ($$$1 \\le t \\le 10^4$$$). The description of the test cases follows.\nFor each test case: The first line contains a single integer $$$n$$$ ($$$1 \\le n \\le 2\\cdot 10^5$$$). Each of the following $$$n$$$ lines contains a character $$$c$$$ ($$$c \\in \\{\\text{'p'}, \\text{'s'}\\}$$$) and an integer $$$x$$$:\n  If $$$c = \\text{'p'}$$$, it denotes that $$$p_i = x$$$, where $$$1 \\le x \\le n$$$.\n If $$$c = \\text{'s'}$$$, it denotes that $$$s_i = x$$$, where $$$0 \\le x \\le \\frac{i(i-1)}{2}$$$.\nThe sum of $$$n$$$ over all test cases does not exceed $$$2\\cdot 10^5$$$.\nIt is guaranteed that a valid permutation always exists.\n\nOutput\nFor each test case, output $$$n$$$ integers representing the permutation $$$p$$$.\nIf there are multiple valid permutations, you can output any of them.",
+    "samples": [
+      {
+        "input": "5\n3\np 1\np 2\np 3\n3\ns 0\ns 1\ns 2\n3\np 1\ns 0\np 2\n5\np 1\np 4\ns 0\np 2\ns 4\n6\ns 0\ns 1\ns 3\ns 6\ns 10\ns 15",
+        "output": "1 2 3\n3 1 2\n1 3 2\n1 4 5 2 3\n6 5 4 3 2 1"
+      }
+    ],
+    "csrf": "6337e707a3405b3998dcebd67c390c9b",
+    "ftaa": "fhh8klj2brpmyratpe",
+    "bfaa": "43f02d372b3f6032748c8f668bb44916",
+    "languages": {
+      "87": "Java 21 64bit",
+      "36": "Java 8 32bit",
+      "7": "Python 2.7.18",
+      "31": "Python 3.13.2",
+      "34": "JavaScript V8 4.8.0"
+    },
+    "url": "https://codeforces.com/contest/2240/problem/E"
+  },
+  {
+    "contestId": 2240,
+    "contestName": "Codeforces Round 1105 (Div. 2)",
+    "index": "F",
+    "name": "Hunting the Beast",
+    "rating": 2500,
+    "tags": [
+      "combinatorics",
+      "graphs"
+    ],
+    "statement": "F. Hunting the Beast\ntime limit per test\n2 seconds\nmemory limit per test\n256 megabytes\ninput\nstandard input\noutput\nstandard output\n\nIn Zhuji, a city in central Zhejiang Province, local folklore tells of a wild beast known as the Modeiyon. Dwelling deep in the mountains, it is said to sneak into villages at night to devour livestock and prey on lone travelers. Though many elders claim to have seen it, no photograph of the creature has ever been taken.\nA brave group of $$$m$$$ people decides to head up the mountain to hunt the beast. The mountain's locations and trails can be modeled as a functional graph $$$G$$$ with $$$n$$$ vertices (numbered $$$1$$$ to $$$n$$$). A functional graph is a directed graph with $$$n$$$ vertices and $$$n$$$ edges, where every vertex has an out-degree of exactly $$$1$$$. Additionally, it is known that the mountain's trails do not ever form self-loops.\nThe group will choose exactly $$$m$$$ distinct vertices to form their initial starting set $$$S$$$. A starting set $$$S$$$ is defined as successful if every vertex $$$u$$$ in the graph is reachable from at least one vertex $$$v \\in S$$$ (a vertex is always reachable from itself).\nThere are $$$\\binom{n}{m}$$$ possible ways to choose the starting set of size $$$m$$$. They define the value of a graph $$$G$$$ as the number of successful starting sets it has.\nHowever, the exact layout of the mountain's trails is unknown. If the destination of the single outgoing edge from each vertex is chosen arbitrarily from the remaining $$$n-1$$$ vertices (excluding the vertex itself), there are exactly $$$(n-1)^n$$$ possible functional graphs. Given $$$n$$$ and $$$m$$$, your task is to calculate the sum of the values of all $$$(n-1)^n$$$ possible functional graphs. Since the answer can be very large, print it modulo $$$998\\,244\\,353$$$.\n\nInput\nEach test contains multiple test cases. The first line contains the number of test cases $$$t$$$ ($$$1 \\le t \\le 10^4$$$). The description of the test cases follows.\nThe only line of each test case contains two integers $$$n,m$$$ ($$$1\\le m \\le n\\le 10^6$$$) \u2014 the number of vertices in the graph and the number of starting vertices.\nIt is guaranteed that the sum of $$$n$$$ over all test cases does not exceed $$$10^6$$$.\n\nOutput\nFor each test case, output a single integer \u2014 the sum of the values of all $$$(n-1)^n$$$ possible functional graphs, modulo $$$998\\,244\\,353$$$.",
+    "samples": [
+      {
+        "input": "5\n2 1\n3 1\n3 2\n4 2\n8 3",
+        "output": "2\n12\n18\n216\n20415360"
+      }
+    ],
+    "csrf": "6337e707a3405b3998dcebd67c390c9b",
+    "ftaa": "fhh8klj2brpmyratpe",
+    "bfaa": "43f02d372b3f6032748c8f668bb44916",
+    "languages": {
+      "87": "Java 21 64bit",
+      "36": "Java 8 32bit",
+      "7": "Python 2.7.18",
+      "31": "Python 3.13.2",
+      "34": "JavaScript V8 4.8.0"
+    },
+    "url": "https://codeforces.com/contest/2240/problem/F"
+  },
+  {
+    "contestId": 2238,
+    "contestName": "Codeforces Round 1106 (Div. 2)",
+    "index": "E",
+    "name": "Cake Trial",
+    "rating": 2100,
+    "tags": [
+      "dp",
+      "greedy"
+    ],
+    "statement": "E. Cake Trial\ntime limit per test\n2 seconds\nmemory limit per test\n512 megabytes\ninput\nstandard input\noutput\nstandard output\n\nThe cake is a lie.\n\u2014 Portal\n\nGLaDOS, the artificial intelligence of the Aperture Science Enrichment Center, decided to conduct another test for Chell. This time, the test is about cakes.\nGLaDOS arranged $$$n$$$ cakes in a row. Each cake can be either real (T) or fake (F). Chell must guess which cakes are real and which are fake. Chell has a unique ability: she can determine exactly whether a cake is real just by looking at it. However, in her answer, she must satisfy GLaDOS's strange condition: all fake cakes in Chell's answer must form one contiguous subsegment (possibly empty).\nInitially, GLaDOS prepared some arrangement of cakes, but some cakes have not been placed yet. You are given a string $$$s$$$ of length $$$n$$$ describing the current situation:\n  $$$s_i =$$$ T, if the $$$i$$$-th cake is real;\n $$$s_i =$$$ F, if the $$$i$$$-th cake is fake;\n $$$s_i =$$$ N, if there is no cake at the $$$i$$$-th position yet, and GLaDOS may still place either a real or a fake cake there at her discretion.\n After GLaDOS finishes the arrangement (replaces all N with T or F), Chell will see the final arrangement and will know exactly for each cake whether it is real or fake. Chell will choose a contiguous segment $$$[l, r]$$$ ($$$1 \\le l \\le r \\le n$$$) that she will declare to be the set of fake cakes (or she may declare all cakes to be real). All cakes outside this segment are considered real. Chell wants her answer to be as close to the truth as possible, so she will choose the segment to minimize the number of mistakes.GLaDOS, being cunning, wants to make Chell's life harder. She wants to place the remaining cakes (replace all N with T or F) so that the number of mistakes Chell is forced to make, under her optimal choice of segment, is as large as possible.\nHelp GLaDOS determine the maximum number of mistakes she can guarantee.\n\nInput\nEach test contains multiple test cases. The first line contains the number of test cases $$$t$$$ ($$$1 \\le t \\le 10^4$$$). The description of the test cases follows.\nThe first line of each test case contains one integer $$$n$$$ ($$$1 \\le n \\le 500$$$) \u2014 the number of cakes.\nThe second line of each test case contains a string $$$s$$$ of length $$$n$$$ consisting of the characters T, F, or N \u2014 the current arrangement of cakes.\nIt is guaranteed that the sum of $$$n^3$$$ over all test cases does not exceed $$$500^3$$$.\n\nOutput\nFor each test case, output one integer \u2014 the maximum number of mistakes that GLaDOS can guarantee.",
+    "samples": [
+      {
+        "input": "10\n4\nFTFF\n5\nTNFTT\n6\nTFTTTN\n6\nTNNFTF\n7\nTNFNTNF\n6\nNNFFNN\n7\nTNTFNTN\n1\nN\n5\nNNNNN\n10\nNNNTTNNNFN",
+        "output": "1\n0\n1\n2\n2\n2\n2\n0\n2\n3"
+      }
+    ],
+    "csrf": "6337e707a3405b3998dcebd67c390c9b",
+    "ftaa": "fhh8klj2brpmyratpe",
+    "bfaa": "43f02d372b3f6032748c8f668bb44916",
+    "languages": {
+      "87": "Java 21 64bit",
+      "36": "Java 8 32bit",
+      "7": "Python 2.7.18",
+      "31": "Python 3.13.2",
+      "34": "JavaScript V8 4.8.0"
+    },
+    "url": "https://codeforces.com/contest/2238/problem/E"
+  },
+  {
+    "contestId": 2238,
+    "contestName": "Codeforces Round 1106 (Div. 2)",
+    "index": "F",
+    "name": "Infinite Work",
+    "rating": 2600,
+    "tags": [
+      "combinatorics",
+      "graphs",
+      "greedy",
+      "math",
+      "trees"
+    ],
+    "statement": "F. Infinite Work\ntime limit per test\n2.5 seconds\nmemory limit per test\n256 megabytes\ninput\nstandard input\noutput\nstandard output\n\nMore monkeys!\n\u2014 Exponential Idle\n\nYou are in charge of a large scientific project studying an unusual function. To carry it out, you hired $$$10^{10^{100}}$$$ students and numbered them with natural numbers from $$$1$$$ to $$$10^{10^{100}}$$$. The students form a hierarchy:\n  Student $$$1$$$ is the main one.\n For any $$$i \\geq 2$$$, the direct supervisor of student $$$i$$$ is student $$$\\left\\lfloor \\frac{i}{2} \\right\\rfloor$$$.\n The direct subordinates of student $$$i$$$ are students $$$2i$$$ and $$$2i+1$$$ (if these numbers do not exceed $$$10^{10^{100}}$$$).\n Subordination is transitive: if $$$a$$$ is subordinate to $$$b$$$, and $$$b$$$ is subordinate to $$$c$$$, then $$$a$$$ is subordinate to $$$c$$$.\n Initially, all students are working.There are $$$n$$$ days left until the project is completed. Each day consists of two stages:\n  Hiring. Each working student $$$i$$$ hires all the non-working students who are directly subordinate to him:   If student $$$2i$$$ is not working and $$$2i \\leq 10^{10^{100}}$$$, he starts working.\n If student $$$2i + 1$$$ is not working and $$$2i + 1 \\leq 10^{10^{100}}$$$, he starts working.\n Newly hired students cannot hire anyone on the same day.\n Firing. You may choose any set of working students and directly fire each of them. If student $$$i$$$ is directly fired, then all of his subordinates are automatically fired as well. Such firings are called indirect. Student $$$1$$$ cannot be fired.\nAdditional restriction: Each student may be fired (directly or indirectly) at most once. If a previously fired student is hired again, it is forbidden to perform a firing that would cause this student to be fired again.\nBelow (showing only the first $$$15$$$ students) are examples of how to choose students for direct firing on each day so that after $$$2$$$ days exactly $$$5$$$ students remain. The number at the top corresponds to the student number, edges show subordination.\nStudents who are working and have not been fired are marked green, students who have been fired are marked white, and students who were previously fired but have been rehired are marked red.\n    Day $$$1$$$, before firing. All students are hired.    Day $$$1$$$, after firing. Students $$$2$$$, $$$6$$$, $$$7$$$ are fired.    Day $$$2$$$, before firing. Students $$$2$$$, $$$6$$$, $$$7$$$ are hired. Note that during the firing stage, student $$$3$$$ cannot be directly fired, as this would lead to firing students $$$6$$$ and $$$7$$$, who have already been fired before this moment. Your goal is to make it so that exactly $$$n$$$ days later there are exactly $$$k$$$ working students left in the project. At the same time, you need to minimize the total number of direct firings over the whole period.\nFind the number of ways to choose the students for direct firing on each day so that the final number of working students is $$$k$$$, and the total number of direct firings is minimal possible. Output the answer modulo $$$10^9 + 7$$$.\n\nInput\nEach test contains multiple test cases. The first line contains the number of test cases $$$t$$$ ($$$1 \\le t \\le 10^5$$$). The description of the test cases follows.\nThe first line of each test case contains two integers $$$n$$$ and $$$k$$$ ($$$1 \\le n \\le 10^9$$$, $$$1 \\le k \\le 2 \\cdot 10^5$$$) \u2014 the number of days and the required final number of active students.\n\nOutput\nFor each test case, output one integer \u2014 the number of possible ways to choose firings on each day so that after $$$n$$$ days exactly $$$k$$$ students remain, under the condition that the total number of firings is minimal possible.",
+    "samples": [
+      {
+        "input": "6\n1 1\n2 5\n3 4\n1 5\n20 14\n1000000000 20",
+        "output": "1\n2\n2\n42\n120\n12"
+      }
+    ],
+    "csrf": "6337e707a3405b3998dcebd67c390c9b",
+    "ftaa": "fhh8klj2brpmyratpe",
+    "bfaa": "43f02d372b3f6032748c8f668bb44916",
+    "languages": {
+      "87": "Java 21 64bit",
+      "36": "Java 8 32bit",
+      "7": "Python 2.7.18",
+      "31": "Python 3.13.2",
+      "34": "JavaScript V8 4.8.0"
+    },
+    "url": "https://codeforces.com/contest/2238/problem/F"
+  },
+  {
+    "contestId": 2242,
+    "contestName": "Educational Codeforces Round 192 (Rated for Div. 2)",
+    "index": "E",
+    "name": "Product of Closures",
+    "rating": 2200,
+    "tags": [
+      "bitmasks",
+      "brute force",
+      "constructive algorithms",
+      "greedy",
+      "implementation",
+      "math",
+      "number theory"
+    ],
+    "statement": "E. Product of Closures\ntime limit per test\n2 seconds\nmemory limit per test\n512 megabytes\ninput\nstandard input\noutput\nstandard output\n\nLet the closure of a positive integer $$$x  \\gt  0$$$ be the following infinite binary string $$$C(x)$$$:\n  Write $$$x$$$ in binary form without leading zeros;\n Concatenate the obtained string with itself infinitely many times and call the result $$$C(x)$$$.\nFor example, $$$C(1)$$$ $$$=$$$ 11111..., $$$C(4)$$$ $$$=$$$ 10010010010010..., $$$C(9)$$$ $$$=$$$ 100110011001....\nLet the product of two closures $$$C(x) \\mathop{\\&} C(y)$$$ be the infinite binary string obtained by the bitwise binary AND of the strings $$$C(x)$$$ and $$$C(y)$$$. For example, for $$$C(4) \\mathop{\\&} C(9)$$$ we get\n$$$$$$ \\begin{array}{r} \\begin{array}{r} C(4)\\\\ C(9)\\\\ \\end{array} \\mathop{\\&} \\begin{array}{r} 100100100100100100...\\\\ 100110011001100110...\\\\ \\end{array} \\\\ \\hline \\begin{array}{r} 100100000000100100... \\end{array} \\end{array} $$$$$$\nYou are given three integers $$$l$$$, $$$r$$$, and $$$n$$$. Among all numbers in the segment $$$[l, r]$$$, find two integers $$$x$$$ and $$$y$$$ ($$$l \\le x  \\lt  y \\le r$$$) such that $$$C(x) \\mathop{\\&} C(y)$$$ is lexicographically smallest, and print the first $$$n$$$ binary symbols of this product.\n\nInput\nThe first line contains one integer $$$t$$$ ($$$1 \\le t \\le 1000$$$)\u00a0\u2014 the number of test cases.\nThe only line of each test case contains three integers $$$l$$$, $$$r$$$, and $$$n$$$ ($$$1 \\le l  \\lt  r  \\lt  2^{30}$$$; $$$1 \\le n \\le 1000$$$)\u00a0\u2014 the range of possible values and the length of the answer.\n\nOutput\nFor each test case, print one binary string of length $$$n$$$\u00a0\u2014 the first $$$n$$$ symbols of the lexicographically smallest product of closures.",
+    "samples": [
+      {
+        "input": "3\n1 4 10\n1073741822 1073741823 35\n10 20 15",
+        "output": "1000001000\n11111111111111111111111111111011111\n100000000010000"
+      }
+    ],
+    "csrf": "6337e707a3405b3998dcebd67c390c9b",
+    "ftaa": "fhh8klj2brpmyratpe",
+    "bfaa": "43f02d372b3f6032748c8f668bb44916",
+    "languages": {
+      "87": "Java 21 64bit",
+      "36": "Java 8 32bit",
+      "7": "Python 2.7.18",
+      "31": "Python 3.13.2",
+      "34": "JavaScript V8 4.8.0"
+    },
+    "url": "https://codeforces.com/contest/2242/problem/E"
+  },
+  {
+    "contestId": 2242,
+    "contestName": "Educational Codeforces Round 192 (Rated for Div. 2)",
+    "index": "F",
+    "name": "Summer Vacation",
+    "rating": 2800,
+    "tags": [
+      "data structures",
+      "dp",
+      "probabilities",
+      "trees"
+    ],
+    "statement": "F. Summer Vacation\ntime limit per test\n1.5 seconds\nmemory limit per test\n1024 megabytes\ninput\nstandard input\noutput\nstandard output\n\nWhile reading the statement of this problem, we recommend forgetting that summer consists of $$$92$$$ days and that a day consists of $$$1440$$$ minutes. This is Berland, and things are different here.\nMonocarp is a student at a provincial university in Berland. The summer holidays have just begun, and they will last for the next $$$n$$$ days. Monocarp has long dreamed of going to the capital of Berland, so he will choose one day $$$i$$$ among these days, arrive in the capital on that day, and spend the rest of the holidays there.\nThe capital of Berland is not a very cheap city, and Monocarp has $$$0$$$ Berland dollars with him. Naturally, this is not enough to visit interesting places and buy souvenirs. Therefore, on some days in the capital, Monocarp will work as a freelancer. He does not want to work in his hometown, since he has already spent the whole academic year doing university assignments.\nFormally, on the $$$i$$$-th day of the holidays, Monocarp will have $$$a_i$$$ free minutes, which he will spend either working or resting and buying souvenirs. If Monocarp has at least $$$a_i$$$ dollars at the beginning of the $$$i$$$-th day, then on that day he will spend them on rest and souvenirs at a rate of $$$1$$$ dollar per minute; that is, during this day, he will spend $$$a_i$$$ dollars. Otherwise, he will spend this time working, earning $$$1$$$ dollar per minute; that is, during this day, he will earn $$$a_i$$$ dollars. Note that Monocarp always makes his decision for the entire day; it is impossible for him to both spend and earn money during the same day.\nYour task is to determine, for each number of days $$$k$$$ from $$$1$$$ to $$$n$$$, how many dollars Monocarp will have left after the last day of the holidays if he lives in the capital for exactly $$$k$$$ last days (i.\u2009e. if he arrives on the day $$$(n-k+1)$$$).\n\nInput\nThe first line contains one integer $$$n$$$ ($$$1 \\le n \\le 10^{5}$$$).\nThe second line contains $$$n$$$ integers $$$a_{i}$$$ ($$$1 \\le a_{i} \\le n$$$).\n\nOutput\nPrint $$$n$$$ integers, where the $$$k$$$-th integer must be equal to the number of dollars Monocarp will have left if he lives in the capital for exactly $$$k$$$ last days (i.\u2009e. if he arrives on the day $$$(n-k+1)$$$).",
+    "samples": [
+      {
+        "input": "6\n6 6 1 1 6 6",
+        "output": "6 0 1 0 4 0 "
+      },
+      {
+        "input": "14\n3 13 11 12 10 11 10 7 8 14 11 14 8 2",
+        "output": "2 6 4 15 7 15 16 6 7 7 9 8 11 16 "
+      },
+      {
+        "input": "10\n1 2 3 4 5 6 7 8 9 10",
+        "output": "10 19 7 16 4 13 1 10 16 1 "
+      }
+    ],
+    "csrf": "6337e707a3405b3998dcebd67c390c9b",
+    "ftaa": "fhh8klj2brpmyratpe",
+    "bfaa": "43f02d372b3f6032748c8f668bb44916",
+    "languages": {
+      "87": "Java 21 64bit",
+      "36": "Java 8 32bit",
+      "7": "Python 2.7.18",
+      "31": "Python 3.13.2",
+      "34": "JavaScript V8 4.8.0"
+    },
+    "url": "https://codeforces.com/contest/2242/problem/F"
+  },
+  {
+    "contestId": 2246,
+    "contestName": "Codeforces Round 1108 (Div. 2)",
+    "index": "E",
+    "name": "lce4113 and Security Game",
+    "rating": 2600,
+    "tags": [
+      "bitmasks",
+      "interactive",
+      "math",
+      "probabilities"
+    ],
+    "statement": "E. lce4113 and Security Game\ntime limit per test\n4 seconds\nmemory limit per test\n256 megabytes\ninput\nstandard input\noutput\nstandard output\n\nThis is an interactive problem. Additionally, hacks are disabled for this problem.\nThere are two hidden integers $$$b$$$ and $$$v$$$ such that $$$b \\in \\{0,1\\}$$$ and $$$0 \\le v  \\lt  2^{30}.$$$ There is also a hidden operation $$$\\mathrm{ty},$$$ which is either $$$\\&$$$ or $$$|.$$$ Here, $$$\\&$$$ denotes the bitwise AND operation. Additionally, $$$|$$$ denotes the bitwise OR operation.\nYour goal is to guess $$$b.$$$\nThe interaction proceeds as follows:\n  First, you send a value $$$x$$$ to the interactor, such that $$$0 \\le x  \\lt  2^{30}$$$.\n The interactor sends back $$$v\\,\\mathrm{ty}\\,x$$$. Formally, it will send back $$$o(v,x)$$$, where $$$$$$o(v,x) = \\begin{cases}v\\,\\&\\,x & \\mathrm{ty} = \\& \\\\ v\\,|\\,x & \\mathrm{ty} = |.\\end{cases}$$$$$$\n You then send two numbers $$$m_0$$$ and $$$m_1$$$, where $$$0 \\le m_0, m_1  \\lt  2^{30}.$$$\n Finally, the interactor will send back $$$m_b \\oplus v,$$$ where $$$\\oplus$$$ denotes the bitwise XOR operation.\nAfter the interaction, you have to output $$$b$$$.\n\nInput\nEach test contains multiple test cases. The first line contains the number of test cases $$$t$$$ ($$$1 \\le t \\le 10^5$$$). The description of the test cases follows. Note that this is the only initial input given.\n\nInteraction\nFirst, you need to output a single integer $$$x \\, (0 \\le x  \\lt  2^{30})$$$\u00a0\u2014 the initial value to send to the interactor.\nIn response, you will receive a single integer $$$o\\,(0 \\le o  \\lt  2^{30})$$$\u00a0\u2014 the result $$$o(v,x)$$$ of the operation $$$v\\,\\mathrm{ty}\\,x.$$$\nNext, you will send a single line containing two integers $$$m_0, m_1\\,(0 \\le m_0, m_1  \\lt  2^{30}).$$$\nFinally, receive a single integer $$$r\\,(0 \\le r  \\lt  2^{30})$$$\u00a0\u2014 the value of $$$m_b \\oplus v.$$$\nNote that the interactor is partially adaptive\u00a0\u2014 in particular, the choice of $$$v$$$ may be determined by the initial input $$$x$$$, but all hidden values will be fixed after.\nAfter printing each query do not forget to output the end of line and flush$$$^{\\text{\u2217}}$$$ the output. Otherwise, you will get Idleness limit exceeded verdict.\nIf, at any interaction step, you read $$$-1$$$ instead of valid data, your solution must exit immediately. This means that your solution will receive Wrong answer because of an invalid query or any other mistake. Failing to exit can result in an arbitrary verdict because your solution will continue to read from a closed stream.\n$$$^{\\text{\u2217}}$$$To flush, use:\n  fflush(stdout) or cout.flush() in C++;\n sys.stdout.flush() in Python;\n see the documentation for other languages.",
+    "samples": [
+      {
+        "input": "3\n0\n315\n3\n35\n5\n5",
+        "output": "2\n314 159\n0\n3\n12 34\n1\n0\n0 0\n1"
+      }
+    ],
+    "csrf": "6337e707a3405b3998dcebd67c390c9b",
+    "ftaa": "fhh8klj2brpmyratpe",
+    "bfaa": "43f02d372b3f6032748c8f668bb44916",
+    "languages": {
+      "87": "Java 21 64bit",
+      "36": "Java 8 32bit",
+      "7": "Python 2.7.18",
+      "31": "Python 3.13.2",
+      "34": "JavaScript V8 4.8.0"
+    },
+    "url": "https://codeforces.com/contest/2246/problem/E"
+  },
+  {
+    "contestId": 2246,
+    "contestName": "Codeforces Round 1108 (Div. 2)",
+    "index": "F",
+    "name": "Whoname and Unsorted Array",
+    "rating": 2900,
+    "tags": [
+      "constructive algorithms"
+    ],
+    "statement": "F. Whoname and Unsorted Array\ntime limit per test\n2 seconds\nmemory limit per test\n256 megabytes\ninput\nstandard input\noutput\nstandard output\n\nGiven a permutation$$$^{\\text{\u2217}}$$$ $$$p$$$ of length $$$n$$$, you may perform the following operation on it any number of times (possibly zero):\n  Choose an index $$$i$$$ where $$$1 \\leq i \\leq n-1$$$, and move $$$p_i$$$ to $$$p_1$$$ (shifting everything in between to the right) and $$$p_{i+1}$$$ to $$$p_n$$$ (shifting everything in between to the left). Formally, you may transform $$$p = [p_1, \\ldots, p_n]$$$ into $$$p' = [p_i, p_1, p_2, \\ldots, p_{i-1}, p_{i+2}, p_{i+3}, \\ldots, p_n, p_{i+1}].$$$\nProvide a valid sequence of operations of length at most $$$4n$$$ to make $$$p_i = i$$$ for all $$$i\\,(1 \\le i \\le n)$$$, or print $$$-1$$$ if no sequence exists.\nIt can be shown that if a valid sequence of operations exists, there is a valid sequence of length at most $$$4n$$$ operations.\n$$$^{\\text{\u2217}}$$$A permutation of length $$$n$$$ is an array consisting of $$$n$$$ distinct integers from $$$1$$$ to $$$n$$$ in arbitrary order. For example, $$$[2,3,1,5,4]$$$ is a permutation, but $$$[1,2,2]$$$ is not a permutation ($$$2$$$ appears twice in the array), and $$$[1,3,4]$$$ is also not a permutation ($$$n=3$$$ but there is $$$4$$$ in the array).\n\nInput\nEach test contains multiple test cases. The first line contains the number of test cases $$$t$$$ ($$$1 \\le t \\le 10^3$$$). The description of the test cases follows.\nThe first line contains an integer $$$n\\,(2 \\leq n \\leq 5000)$$$\u00a0\u2014 the length of the permutation.\nThe second line contains $$$n$$$ integers $$$p_1, p_2, \\ldots, p_n \\, (1 \\le p_i \\le n)$$$.\nIt is guaranteed that $$$p$$$ is a permutation.\nIt is guaranteed that the sum of $$$n$$$ over all test cases does not exceed $$$5000$$$.\n\nOutput\nIf there does not exist a valid sequence of operations, output $$$-1$$$.\nOtherwise, on the first line, output $$$x\\,(0 \\leq x \\leq 4n)$$$, the number of operations needed to sort the permutation. On the second line, output $$$x$$$ integers $$$i_1, \\ldots, i_x$$$ where $$$i_j$$$ ($$$1 \\leq i_j \\leq n-1$$$) denotes the index corresponding to the $$$j$$$-th operation.",
+    "samples": [
+      {
+        "input": "4\n2\n2 1\n3\n3 2 1\n5\n1 5 4 3 2\n4\n4 3 2 1",
+        "output": "-1\n3\n1 2 1\n4\n2 2 3 2\n3\n1 3 1"
+      }
+    ],
+    "csrf": "6337e707a3405b3998dcebd67c390c9b",
+    "ftaa": "fhh8klj2brpmyratpe",
+    "bfaa": "43f02d372b3f6032748c8f668bb44916",
+    "languages": {
+      "87": "Java 21 64bit",
+      "36": "Java 8 32bit",
+      "7": "Python 2.7.18",
+      "31": "Python 3.13.2",
+      "34": "JavaScript V8 4.8.0"
+    },
+    "url": "https://codeforces.com/contest/2246/problem/F"
+  },
+  {
+    "contestId": 2245,
+    "contestName": "Spectral::Cup 2026 Round 3 (Codeforces Round 1110, Div. 1 + Div. 2)",
+    "index": "E",
+    "name": "Tom and Jerry",
+    "rating": 2300,
+    "tags": [
+      "dfs and similar",
+      "dsu",
+      "games",
+      "trees"
+    ],
+    "statement": "E. Tom and Jerry\ntime limit per test\n2 seconds\nmemory limit per test\n256 megabytes\ninput\nstandard input\noutput\nstandard output\n\nYou are given an undirected tree consisting of $$$n$$$ vertices. A simple path $$$p$$$ of length $$$k$$$ is defined as a sequence of distinct vertices $$$p_0,p_1,\\ldots,p_k$$$ such that there exists an undirected edge between vertices $$$p_i$$$ and $$$p_{i+1}$$$ for every $$$0 \\le i  \\lt  k$$$. A simple path is uniquely identified by the unordered pair of its endpoints, $$$(p_0,p_k)$$$. That is, $$$(u,v)$$$ and $$$(v,u)$$$ represent the same simple path.\nTom and Jerry are playing a game on this tree. The players take turns, with Tom going first. In the $$$i$$$-th turn ($$$i \\ge 1$$$), the current player chooses a simple path $$$(x_i,y_i)$$$ that satisfies the following conditions:\n  $$$x_i \\ne y_i$$$.\n The path does not share any edges with any of the previously chosen paths.\n Either $$$x_i$$$ or $$$y_i$$$ belongs to the path chosen in the $$$(i-1)$$$-th turn. Note that this condition only applies when $$$i \\ge 2$$$.\nThe player who is unable to choose a valid path on their turn loses the game.\nAssuming both Tom and Jerry play optimally, your task is to compute the total number of distinct simple paths Tom can choose in the first turn such that he can guarantee a win.\n\nInput\nEach test contains multiple test cases. The first line contains the number of test cases $$$t$$$ ($$$1 \\le t \\le 10^4$$$). The description of the test cases follows.\nThe first line of each test case contains an integer $$$n$$$ ($$$2 \\le n \\le 2 \\cdot 10^5$$$), representing the number of vertices in the tree.\nEach of the next $$$n-1$$$ lines contains two integers $$$u$$$ and $$$v$$$ ($$$1 \\le u,v \\le n$$$, $$$u \\ne v$$$), representing an undirected edge between vertices $$$u$$$ and $$$v$$$. It is guaranteed that the edges form a valid tree.\nIt is guaranteed that the sum of $$$n$$$ over all test cases does not exceed $$$2 \\cdot 10^5$$$.\n\nOutput\nFor each test case, output an integer representing the total number of distinct simple paths Tom can choose in the first turn such that he can guarantee a win.",
+    "samples": [
+      {
+        "input": "5\n2\n1 2\n3\n1 2\n2 3\n5\n1 2\n2 3\n2 4\n2 5\n5\n1 2\n2 3\n3 4\n4 5\n7\n1 2\n2 3\n2 4\n4 5\n5 6\n5 7",
+        "output": "1\n1\n6\n1\n5"
+      }
+    ],
+    "csrf": "6337e707a3405b3998dcebd67c390c9b",
+    "ftaa": "fhh8klj2brpmyratpe",
+    "bfaa": "43f02d372b3f6032748c8f668bb44916",
+    "languages": {
+      "87": "Java 21 64bit",
+      "36": "Java 8 32bit",
+      "7": "Python 2.7.18",
+      "31": "Python 3.13.2",
+      "34": "JavaScript V8 4.8.0"
+    },
+    "url": "https://codeforces.com/contest/2245/problem/E"
+  },
+  {
+    "contestId": 2245,
+    "contestName": "Spectral::Cup 2026 Round 3 (Codeforces Round 1110, Div. 1 + Div. 2)",
+    "index": "F",
+    "name": "Familiar?",
+    "rating": 2800,
+    "tags": [
+      "brute force",
+      "combinatorics",
+      "dp"
+    ],
+    "statement": "F. Familiar?\ntime limit per test\n5 seconds\nmemory limit per test\n128 megabytes\ninput\nstandard input\noutput\nstandard output\n\nNote the unusual memory limit.\nConsider the following pseudocode that processes a permutation $$$p$$$ of length $$$n$$$$$$^{\\text{\u2217}}$$$:\nfunction mystery(p):\n    n = length of p\n    st = an empty stack\n    count = an array of length n filled with 0s\n    for i from 1 to n:\n        while st is not empty and p[i] < top of st:\n            pop from st\n            count[i] = count[i] + 1\n        push p[i] into st\n    return count\nYou are given an array $$$a$$$ of length $$$n$$$. Your task is to count the number of permutations $$$p$$$ of length $$$n$$$ such that, if $$$b$$$ is the array returned by mystery(p), the condition $$$a_i = b_i$$$ holds for all $$$i$$$ ($$$1 \\le i \\le n$$$) where $$$a_i \\neq -1$$$.\nSince the answer can be very large, output it modulo $$$998\\,244\\,353$$$.\n$$$^{\\text{\u2217}}$$$A permutation of length $$$n$$$ is an array consisting of $$$n$$$ distinct integers from $$$1$$$ to $$$n$$$ in arbitrary order. For example, $$$[2,3,1,5,4]$$$ is a permutation, but $$$[1,2,2]$$$ is not a permutation ($$$2$$$ appears twice in the array), and $$$[1,3,4]$$$ is also not a permutation ($$$n=3$$$ but there is $$$4$$$ in the array).\n\nInput\nEach test contains multiple test cases. The first line contains the number of test cases $$$t$$$ ($$$1 \\le t \\le 10^4$$$). The description of the test cases follows.\nThe first line of each test case contains an integer $$$n$$$ ($$$1 \\le n \\le 500$$$), representing the length of $$$a$$$.\nThe second line contains $$$n$$$ integers $$$a_1,a_2,\\ldots,a_n$$$ ($$$-1 \\le a_i \\le n$$$), representing the elements in $$$a$$$.\nIt is guaranteed that the sum of $$$n^3$$$ over all test cases does not exceed $$$500^3$$$.\n\nOutput\nFor each test case, output an integer representing the number of permutations, modulo $$$998\\,244\\,353$$$.",
+    "samples": [
+      {
+        "input": "7\n1\n0\n1\n-1\n1\n1\n4\n0 0 -1 1\n6\n-1 -1 -1 -1 -1 -1\n3\n0 1 0\n7\n0 -1 0 -1 2 1 -1",
+        "output": "1\n1\n0\n3\n720\n2\n77"
+      }
+    ],
+    "csrf": "6337e707a3405b3998dcebd67c390c9b",
+    "ftaa": "fhh8klj2brpmyratpe",
+    "bfaa": "43f02d372b3f6032748c8f668bb44916",
+    "languages": {
+      "87": "Java 21 64bit",
+      "36": "Java 8 32bit",
+      "7": "Python 2.7.18",
+      "31": "Python 3.13.2",
+      "34": "JavaScript V8 4.8.0"
+    },
+    "url": "https://codeforces.com/contest/2245/problem/F"
+  },
+  {
+    "contestId": 2247,
+    "contestName": "Codeforces Round 1111 (Div. 2)",
+    "index": "E",
+    "name": "Build a Tree",
+    "rating": 2300,
+    "tags": [
+      "constructive algorithms",
+      "trees",
+      "two pointers"
+    ],
+    "statement": "E. Build a Tree\ntime limit per test\n2 seconds\nmemory limit per test\n256 megabytes\ninput\nstandard input\noutput\nstandard output\n\nYou are given two integers $$$n$$$ and $$$k$$$.\nConstruct a tree$$$^{\\text{\u2217}}$$$ with $$$n$$$ vertices such that $$$\\sum\\limits_{i = 1}^{n} \\operatorname{dist}(i, (i \\bmod n) + 1) = k$$$$$$^{\\text{\u2020}}$$$, or determine that no such tree exists.\n$$$^{\\text{\u2217}}$$$A tree is a connected graph without cycles.\n$$$^{\\text{\u2020}}$$$$$$\\operatorname{dist}(i, j)$$$ is the number of edges on the shortest path from vertex $$$i$$$ to vertex $$$j$$$ in the tree.\n\nInput\nEach test contains multiple test cases. The first line contains the number of test cases $$$t$$$ ($$$1 \\le t \\le 10^4$$$). The description of the test cases follows.\nThe only line of each test case contains two integers $$$n$$$ and $$$k$$$ ($$$2 \\le n \\le 2 \\cdot 10^5$$$, $$$0 \\le k \\le n^2$$$)\u00a0\u2014 the number of vertices in the tree and the required value of $$$k$$$.\nIt is guaranteed that the sum of $$$n$$$ over all test cases does not exceed $$$2 \\cdot 10^5$$$.\n\nOutput\nFor each test case, if there is no solution, output $$$-1$$$.\nOtherwise, output $$$n - 1$$$ lines. Each line should contain two integers $$$u$$$ and $$$v$$$ ($$$1 \\le u, v \\le n$$$), denoting an edge of the tree. The edges may be output in any order.\nIf there are multiple suitable trees, output any of them.",
+    "samples": [
+      {
+        "input": "5\n2 2\n4 6\n5 10\n5 14\n100 8347",
+        "output": "1 2\n1 4\n1 3\n1 2\n3 2\n3 4\n4 1\n5 3\n-1\n-1"
+      }
+    ],
+    "csrf": "6337e707a3405b3998dcebd67c390c9b",
+    "ftaa": "fhh8klj2brpmyratpe",
+    "bfaa": "43f02d372b3f6032748c8f668bb44916",
+    "languages": {
+      "87": "Java 21 64bit",
+      "36": "Java 8 32bit",
+      "7": "Python 2.7.18",
+      "31": "Python 3.13.2",
+      "34": "JavaScript V8 4.8.0"
+    },
+    "url": "https://codeforces.com/contest/2247/problem/E"
+  },
+  {
+    "contestId": 2247,
+    "contestName": "Codeforces Round 1111 (Div. 2)",
+    "index": "F",
+    "name": "Paths on a Grid",
+    "rating": 2900,
+    "tags": [
+      "data structures",
+      "dp",
+      "hashing"
+    ],
+    "statement": "F. Paths on a Grid\ntime limit per test\n3 seconds\nmemory limit per test\n1024 megabytes\ninput\nstandard input\noutput\nstandard output\n\nYou are given a grid $$$a$$$ of size $$$n \\times m$$$. The rows are numbered from $$$1$$$ to $$$n$$$ from top to bottom, and the columns are numbered from $$$1$$$ to $$$m$$$ from left to right. Each cell of the grid is either blocked or free. Cells $$$(1, 1)$$$ and $$$(n, m)$$$ are free.\nA set $$$S$$$ of cells of $$$a$$$, which may include blocked cells, is called good if the following conditions hold:\n  $$$S$$$ is non-empty;\n for every cell $$$(i, j)$$$ belonging to $$$S$$$, every path from $$$(1, 1)$$$ to $$$(n, m)$$$ that passes only through free cells, moves one cell down or one cell right at each step, and passes through $$$(i, j)$$$ also passes through all other cells of $$$S$$$.\nCount the number of good sets of cells of $$$a$$$ modulo $$$998\\,244\\,353$$$.\n\nInput\nEach test contains multiple test cases. The first line contains the number of test cases $$$t$$$ ($$$1 \\le t \\le 10^4$$$). The description of the test cases follows.\nThe first line of each test case contains two integers $$$n$$$ and $$$m$$$ ($$$1 \\le n \\cdot m \\le 10^6$$$).\nThe $$$i$$$-th of the following $$$n$$$ lines contains a string $$$a_{i, 1} a_{i, 2} \\ldots a_{i, m}$$$ ($$$a_{i, j} \\in \\{0, 1\\}$$$)\u00a0\u2014 the $$$i$$$-th row of the grid. If $$$a_{i, j} = 1$$$, then cell $$$(i, j)$$$ is free; otherwise, it is blocked. It is guaranteed that $$$a_{1, 1} = a_{n, m} = 1$$$.\nIt is guaranteed that the sum of $$$n \\cdot m$$$ over all test cases does not exceed $$$10^6$$$.\n\nOutput\nFor each test case, output a single integer\u00a0\u2014 the answer to the problem modulo $$$998\\,244\\,353$$$.",
+    "samples": [
+      {
+        "input": "6\n1 1\n1\n2 2\n11\n11\n2 2\n10\n01\n2 2\n11\n01\n4 4\n1011\n1101\n0111\n1111\n1 32\n10010110010001010110011111010011",
+        "output": "1\n5\n15\n8\n162\n301989883"
+      }
+    ],
+    "csrf": "6337e707a3405b3998dcebd67c390c9b",
+    "ftaa": "fhh8klj2brpmyratpe",
+    "bfaa": "43f02d372b3f6032748c8f668bb44916",
+    "languages": {
+      "87": "Java 21 64bit",
+      "36": "Java 8 32bit",
+      "7": "Python 2.7.18",
+      "31": "Python 3.13.2",
+      "34": "JavaScript V8 4.8.0"
+    },
+    "url": "https://codeforces.com/contest/2247/problem/F"
+  },
+  {
+    "contestId": 2250,
+    "contestName": "Codeforces Round 1112 (Div. 2)",
+    "index": "E",
+    "name": "Double-Rift Dial",
+    "rating": 2000,
+    "tags": [
+      "data structures",
+      "implementation"
+    ],
+    "statement": "E. Double-Rift Dial\ntime limit per test\n2 seconds\nmemory limit per test\n256 megabytes\ninput\nstandard input\noutput\nstandard output\n\nA permutation$$$^{\\text{\u2217}}$$$ $$$p$$$ of length $$$n$$$ is written clockwise on a circular dial.\nChoose a starting position $$$s$$$ ($$$1\\le s\\le n$$$) and read one full circle clockwise from $$$p_s$$$, wrapping around after $$$p_n$$$. The resulting sequence is\n$$$$$$ q=[p_s,p_{s+1},\\ldots,p_n,p_1,\\ldots,p_{s-1}], $$$$$$\nwhich also has a length of $$$n$$$.\nFor any non-empty prefix of this sequence $$$[q_1, q_2, \\ldots, q_k]$$$ ($$$k\\ge 1$$$), let $$$S$$$ be the corresponding set of values, that is, $$$S=\\{q_1, q_2,\\ldots, q_k\\}$$$. Split $$$S$$$ into maximal segments of consecutive integers, and we call these segments the blocks of $$$S$$$.\nFor example, $$$S=\\{1,2,5,7,8,9\\}$$$ has $$$3$$$ blocks: $$$\\{1,2\\}$$$, $$$\\{5\\}$$$, and $$$\\{7,8,9\\}$$$.\nA starting position $$$s$$$ is called good if and only if, for every non-empty prefix of $$$q$$$, the corresponding set $$$S$$$ has at most $$$2$$$ blocks.\nFind the number of good starting positions.\n$$$^{\\text{\u2217}}$$$A permutation of length $$$n$$$ is an array consisting of $$$n$$$ distinct integers from $$$1$$$ to $$$n$$$ in arbitrary order. For example, $$$[2,3,1,5,4]$$$ is a permutation, but $$$[1,2,2]$$$ is not a permutation ($$$2$$$ appears twice in the array), and $$$[1,3,4]$$$ is also not a permutation ($$$n=3$$$ but there is $$$4$$$ in the array).\n\nInput\nEach test contains multiple test cases. The first line contains the number of test cases $$$t$$$ ($$$1 \\le t \\le 10^4$$$). The description of the test cases follows.\nThe first line of each test case contains one integer $$$n$$$ ($$$1\\le n\\le 2\\cdot 10^5$$$) \u2014 the length of $$$p$$$.\nThe second line of each test case contains $$$n$$$ integers $$$p_1,p_2,\\ldots,p_n$$$ ($$$1\\le p_i\\le n$$$, all $$$p_i$$$-s are distinct) \u2014 the elements of $$$p$$$.\nIt is guaranteed that the sum of $$$n$$$ over all test cases does not exceed $$$2\\cdot 10^5$$$.\n\nOutput\nFor each test case, print one integer \u2014 the number of good starting positions.",
+    "samples": [
+      {
+        "input": "4\n1\n1\n5\n1 3 5 2 4\n6\n1 2 4 5 3 6\n7\n1 3 5 7 2 4 6",
+        "output": "1\n4\n3\n0"
+      }
+    ],
+    "csrf": "6337e707a3405b3998dcebd67c390c9b",
+    "ftaa": "fhh8klj2brpmyratpe",
+    "bfaa": "43f02d372b3f6032748c8f668bb44916",
+    "languages": {
+      "87": "Java 21 64bit",
+      "36": "Java 8 32bit",
+      "7": "Python 2.7.18",
+      "31": "Python 3.13.2",
+      "34": "JavaScript V8 4.8.0"
+    },
+    "url": "https://codeforces.com/contest/2250/problem/E"
+  },
+  {
+    "contestId": 2250,
+    "contestName": "Codeforces Round 1112 (Div. 2)",
+    "index": "F",
+    "name": "Xor Permutation Matrix",
+    "rating": 2300,
+    "tags": [
+      "bitmasks",
+      "constructive algorithms",
+      "math"
+    ],
+    "statement": "F. Xor Permutation Matrix\ntime limit per test\n2 seconds\nmemory limit per test\n512 megabytes\ninput\nstandard input\noutput\nstandard output\n\nYou are given two integers $$$n$$$ and $$$x$$$ ($$$0 \\le x \\le n-1$$$).\nConstruct a matrix $$$A$$$ of size $$$n\\times n$$$ satisfying all of the following conditions:\n  For every $$$1 \\le i, j \\le n$$$, $$$0 \\le A_{i,j}\\le n-1$$$;\n Every row in $$$A$$$ forms a permutation of $$$0, 1, \\ldots, n-1$$$;\n Every column in $$$A$$$ forms a permutation of $$$0, 1, \\ldots, n-1$$$;\n For every $$$1 \\le i, j\\le n-1$$$, $$$$$$ A_{i,j} \\oplus A_{i+1,j} \\oplus A_{i,j+1} \\oplus A_{i+1,j+1} = x. $$$$$$Here, $$$\\oplus$$$ denotes the bitwise XOR operation.\n\nOr determine that no such matrix exists.\n\nInput\nEach test contains multiple test cases. The first line contains the number of test cases $$$t$$$ ($$$1 \\le t \\le 180$$$). The description of the test cases follows.\nThe only line of each test case contains two integers $$$n$$$ and $$$x$$$ ($$$2\\le n\\le 2500$$$, $$$0\\le x \\lt n$$$).\nIt is guaranteed that the sum of $$$n$$$ over all test cases does not exceed $$$2500$$$.\n\nOutput\nFor each test case, output $$$-1$$$ if no such matrix exists. Otherwise, output any valid $$$n$$$ lines of the matrix.\nIf several valid matrices exist, you may output any of them.",
+    "samples": [
+      {
+        "input": "5\n2 0\n2 1\n3 0\n4 1\n4 0",
+        "output": "0 1\n1 0\n-1\n-1\n0 2 1 3\n2 1 3 0\n1 3 0 2\n3 0 2 1\n0 1 2 3\n1 0 3 2\n2 3 0 1\n3 2 1 0"
+      }
+    ],
+    "csrf": "6337e707a3405b3998dcebd67c390c9b",
+    "ftaa": "fhh8klj2brpmyratpe",
+    "bfaa": "43f02d372b3f6032748c8f668bb44916",
+    "languages": {
+      "87": "Java 21 64bit",
+      "36": "Java 8 32bit",
+      "7": "Python 2.7.18",
+      "31": "Python 3.13.2",
+      "34": "JavaScript V8 4.8.0"
+    },
+    "url": "https://codeforces.com/contest/2250/problem/F"
+  },
+  {
+    "contestId": 2248,
+    "contestName": "Codeforces Round 1113 (Div. 2)",
+    "index": "E",
+    "name": "Excuse for Breaks",
+    "rating": 2000,
+    "tags": [
+      "binary search",
+      "brute force",
+      "greedy",
+      "math",
+      "two pointers"
+    ],
+    "statement": "E. Excuse for Breaks\ntime limit per test\n2 seconds\nmemory limit per test\n256 megabytes\ninput\nstandard input\noutput\nstandard output\n\nYou are given three integers $$$n$$$, $$$m$$$, and $$$d$$$, and two arrays $$$p_1, p_2, \\ldots, p_m$$$ and $$$r_1, r_2, \\ldots, r_m$$$. The array $$$p$$$ is strictly increasing.\nFor a binary array $$$a$$$ of any positive finite length (so $$$|a|$$$ need not equal $$$n$$$), define its value $$$f(a)$$$ using the following pseudocode:\nfunction f(a):\n    v := 0\n    c := 0\n    for i from 1 to length(a):\n        if a[i] is equal to 1:\n            v := v + d\n            c := c + 1\n        else:\n            c := 0\n        for j from 1 to m:\n            if c is equal to p[j]:\n                v := v + r[j]\n        if c is equal to n:\n            c := 0\n    return v\n Here, \":=\" denotes the assignment operation.Let $$$I(a)$$$ denote the array $$$[1,1,\\ldots,1]$$$ of length $$$|a|$$$. In other words, $$$I(a)$$$ consists of $$$|a|$$$ ones.\nDetermine whether there exists a binary (consisting only of zeros and ones) array $$$a$$$ such that $$$f(a)  \\gt  f(I(a))$$$.\n\nInput\nEach test contains multiple test cases. The first line contains the number of test cases $$$t$$$ ($$$1 \\le t \\le 2000$$$). The description of the test cases follows.\nThe first line of each test case contains three integers $$$n$$$, $$$m$$$, and $$$d$$$ ($$$1 \\le n \\le 10^9$$$, $$$0 \\le m \\le 2000$$$, $$$0 \\le d \\le 10^9$$$).\nThe $$$i$$$-th of the next $$$m$$$ lines contains two integers $$$p_i$$$ and $$$r_i$$$ ($$$1 \\le p_i \\le n$$$, $$$1 \\le r_i \\le 10^9$$$).\nThe array $$$p$$$ is strictly increasing.\nIt is guaranteed that the sum of $$$m$$$ over all test cases does not exceed $$$2000$$$.\n\nOutput\nFor each test case, output \"YES\" if such a binary array $$$a$$$ exists, and \"NO\" otherwise.\nYou can output the answer in any case (upper or lower). For example, the strings \"yEs\", \"yes\", \"Yes\", and \"YES\" will be recognized as positive responses.",
+    "samples": [
+      {
+        "input": "3\n6 4 3\n2 5\n3 9\n4 1\n5 3\n7 3 5\n2 5\n4 5\n7 10\n684492057 3 386217943\n367971233 991739271\n612599954 429216213\n684492056 402931836",
+        "output": "YES\nNO\nYES"
+      }
+    ],
+    "csrf": "6337e707a3405b3998dcebd67c390c9b",
+    "ftaa": "fhh8klj2brpmyratpe",
+    "bfaa": "43f02d372b3f6032748c8f668bb44916",
+    "languages": {
+      "87": "Java 21 64bit",
+      "36": "Java 8 32bit",
+      "7": "Python 2.7.18",
+      "31": "Python 3.13.2",
+      "34": "JavaScript V8 4.8.0"
+    },
+    "url": "https://codeforces.com/contest/2248/problem/E"
+  },
+  {
+    "contestId": 2248,
+    "contestName": "Codeforces Round 1113 (Div. 2)",
+    "index": "F",
+    "name": "Matrix Elimination",
+    "rating": 2500,
+    "tags": [
+      "binary search",
+      "greedy",
+      "math"
+    ],
+    "statement": "F. Matrix Elimination\ntime limit per test\n2 seconds\nmemory limit per test\n256 megabytes\ninput\nstandard input\noutput\nstandard output\n\nYou are given an integer $$$k$$$ and a matrix $$$v$$$ with $$$n$$$ rows and $$$m$$$ columns. The element in row $$$i$$$ and column $$$j$$$ is denoted by $$$v_{i,j}$$$.\nA cell $$$(x, y)$$$ is called a peak if its value is greater than or equal to the sum of the values in all other cells in row $$$x$$$ and column $$$y$$$. Formally, $$$(x, y)$$$ is a peak if\n$$$$$$ v_{x,y} \\ge \\sum_{\\substack{1 \\le i \\le n \\\\i \\neq x}} v_{i,y} + \\sum_{\\substack{1 \\le j \\le m \\\\j \\neq y}} v_{x,j}. $$$$$$\nYou may perform the following operation any number of times (possibly zero):\n  Choose four integers $$$x_l$$$, $$$x_r$$$, $$$y_l$$$, and $$$y_r$$$ ($$$1 \\le x_l \\le x_r \\le n$$$, $$$1 \\le y_l \\le y_r \\le m$$$).\n Subtract $$$1$$$ from $$$v_{i,j}$$$ for every $$$x_l \\le i \\le x_r$$$ and $$$y_l \\le j \\le y_r$$$.\nFind the minimum number of operations required to obtain a matrix with at least $$$k$$$ peaks.\n\nInput\nEach test contains multiple test cases. The first line contains the number of test cases $$$t$$$ ($$$1 \\le t \\le 10^4$$$). The description of the test cases follows.\nThe first line of each test case contains three integers $$$n$$$, $$$m$$$, and $$$k$$$ ($$$1 \\le n, m \\le 10^5$$$, $$$1 \\le k \\le n \\cdot m$$$, $$$n \\cdot m \\le 10^5$$$)\u00a0\u2014 the number of rows, the number of columns, and the required number of peaks.\nThe $$$i$$$-th of the next $$$n$$$ lines contains $$$m$$$ integers $$$v_{i,1}, v_{i,2}, \\ldots, v_{i,m}$$$ ($$$-10^9 \\le v_{i,j} \\le 10^9$$$).\nIt is guaranteed that the sum of $$$n \\cdot m$$$ over all test cases does not exceed $$$10^5$$$.\n\nOutput\nFor each test case, output a single integer\u00a0\u2014 the minimum number of operations required to obtain at least $$$k$$$ peaks.\nIf there is no solution, print a single integer $$$-1$$$.",
+    "samples": [
+      {
+        "input": "16\n3 3 7\n-1 -30 7\n6 -3 22\n1 -18 16\n3 1 2\n100000000\n300000000\n200000000\n1 3 1\n2 3 4\n1 3 1\n1 2 3\n1 2 2\n5 7\n5 2 8\n531959596 -61416172\n425363565 672913308\n981527099 451180253\n-161687136 898803495\n-388356105 897723313\n1 1 1\n0\n1 1 1\n-5\n1 4 3\n-8 -4 4 -11\n1 9 5\n-12 -4 -13 9 -1 -15 6 -15 -4\n1 3 3\n-12 -15 8\n1 5 5\n10 8 -4 0 -4\n1 3 3\n12 9 -1\n1 3 3\n-14 11 -6\n1 6 6\n-1 0 15 3 1 -14\n1 2 2\n1000000000 -1000000000",
+        "output": "2\n100000000\n1\n0\n2\n734592698\n0\n-1\n0\n0\n11\n6\n12\n11\n7\n2000000000"
+      }
+    ],
+    "csrf": "6337e707a3405b3998dcebd67c390c9b",
+    "ftaa": "fhh8klj2brpmyratpe",
+    "bfaa": "43f02d372b3f6032748c8f668bb44916",
+    "languages": {
+      "87": "Java 21 64bit",
+      "36": "Java 8 32bit",
+      "7": "Python 2.7.18",
+      "31": "Python 3.13.2",
+      "34": "JavaScript V8 4.8.0"
+    },
+    "url": "https://codeforces.com/contest/2248/problem/F"
+  },
+  {
+    "contestId": 2252,
+    "contestName": "Codeforces Round 1115 (Div. 2)",
+    "index": "E",
+    "name": "Generational Triplets",
+    "rating": 2100,
+    "tags": [
+      "bitmasks",
+      "combinatorics",
+      "dp",
+      "math"
+    ],
+    "statement": "E. Generational Triplets\ntime limit per test\n2 seconds\nmemory limit per test\n256 megabytes\ninput\nstandard input\noutput\nstandard output\n\nYou are given an integer $$$n$$$. Find the number of triplets of integers $$$(a, b, c)$$$ such that:\n  $$$1 \\le a  \\lt  b  \\lt  c \\le n$$$;\n $$$a$$$, $$$b$$$, and $$$c$$$ form an arithmetic progression (i.e., $$$b - a = c - b$$$);\n $$$a \\oplus b \\oplus c = 0$$$, where $$$\\oplus$$$ denotes the bitwise XOR operation.\n As the answer may be huge, you are only asked to output the answer modulo $$$10^9+7$$$.\nInput\nEach test contains multiple test cases. The first line contains the number of test cases $$$t$$$ ($$$1 \\le t \\le 10^4$$$). The description of the test cases follows.\nEach test case contains a single integer $$$n$$$ ($$$3 \\le n \\le 10^{18}$$$).\n\nOutput\nFor each test case, output a single integer \u2014 the number of valid triplets $$$(a, b, c)$$$ modulo $$$10^9 + 7$$$, on a separate line.",
+    "samples": [
+      {
+        "input": "4\n3\n10\n15\n1000000000000000000",
+        "output": "1\n2\n5\n353768760"
+      }
+    ],
+    "csrf": "6337e707a3405b3998dcebd67c390c9b",
+    "ftaa": "fhh8klj2brpmyratpe",
+    "bfaa": "43f02d372b3f6032748c8f668bb44916",
+    "languages": {
+      "87": "Java 21 64bit",
+      "36": "Java 8 32bit",
+      "7": "Python 2.7.18",
+      "31": "Python 3.13.2",
+      "34": "JavaScript V8 4.8.0"
+    },
+    "url": "https://codeforces.com/contest/2252/problem/E"
+  },
+  {
+    "contestId": 2252,
+    "contestName": "Codeforces Round 1115 (Div. 2)",
+    "index": "F",
+    "name": "Spectral Components",
+    "rating": 2600,
+    "tags": [
+      "dfs and similar",
+      "dp",
+      "greedy",
+      "sortings",
+      "trees"
+    ],
+    "statement": "F. Spectral Components\ntime limit per test\n3 seconds\nmemory limit per test\n256 megabytes\ninput\nstandard input\noutput\nstandard output\n\nYou are given a tree consisting of $$$n$$$ vertices. Each vertex $$$i$$$ is painted with a color $$$c_i$$$.\nFor each distinct color $$$c$$$ present in the tree, let $$$m_c$$$ be the total number of vertices of color $$$c$$$. You are also given an array $$$k$$$ of length $$$n$$$, where $$$k_c$$$ ($$$1 \\le k_c \\le m_c$$$) represents the target component size for color $$$c$$$.\nFor every color $$$c$$$ independently, your task is to choose a connected subgraph (a component) consisting of exactly $$$k_c$$$ vertices. The vertices you choose for the component do not necessarily have to be of color $$$c$$$.\nThe cost of a chosen component is the sum of the shortest distances from every vertex of color $$$c$$$ to the chosen component. (The distance from a vertex $$$v$$$ to a component $$$S$$$ is defined as the minimum number of edges on a simple path from $$$v$$$ to any vertex $$$u$$$ in $$$S$$$).\nFor each color $$$c$$$ from $$$1$$$ to $$$n$$$, find the minimum possible cost of a valid component of size $$$k_c$$$. If there are no vertices of color $$$c$$$ in the tree, output $$$-1$$$ for that color.\n\nInput\nEach test contains multiple test cases. The first line contains the number of test cases $$$t$$$ ($$$1 \\le t \\le 10^4$$$). The description of the test cases follows.\nThe first line of each test case contains a single integer $$$n$$$ ($$$1 \\le n \\le 2 \\cdot 10^5$$$) \u2014 the number of vertices in the tree.\nThe second line contains $$$n$$$ integers $$$c_1, c_2, \\ldots, c_n$$$ ($$$1 \\le c_i \\le n$$$) \u2014 the colors of the vertices.\nThe third line contains $$$n$$$ integers $$$k_1, k_2, \\ldots, k_n$$$ ($$$1 \\le k_i \\le n$$$) \u2014 the target component sizes for each color. It is guaranteed that if color $$$c$$$ appears $$$m_c  \\gt  0$$$ times in the tree, then $$$1 \\le k_c \\le m_c$$$.\nEach of the next $$$n - 1$$$ lines contains two integers $$$u$$$ and $$$v$$$ ($$$1 \\le u, v \\le n$$$), representing an edge between vertices $$$u$$$ and $$$v$$$. It is guaranteed that the given edges form a valid tree.\nIt is guaranteed that the sum of $$$n$$$ over all test cases does not exceed $$$2 \\cdot 10^5$$$.\n\nOutput\nFor each test case, output $$$n$$$ integers. The $$$c$$$-th integer should be the minimum possible cost of a valid component of size $$$k_c$$$ for color $$$c$$$, or $$$-1$$$ if color $$$c$$$ is not present in the tree.",
+    "samples": [
+      {
+        "input": "3\n5\n1 1 2 1 2\n2 1 1 1 1\n1 2\n2 3\n2 4\n4 5\n6\n2 1 1 1 1 1\n3 1 1 1 1 1\n1 2\n1 3\n1 4\n1 5\n1 6\n6\n1 2 1 2 1 2\n2 3 1 1 1 1\n1 2\n2 3\n3 4\n4 5\n5 6",
+        "output": "1 3 -1 -1 -1\n3 0 -1 -1 -1 -1\n3 2 -1 -1 -1 -1"
+      }
+    ],
+    "csrf": "6337e707a3405b3998dcebd67c390c9b",
+    "ftaa": "fhh8klj2brpmyratpe",
+    "bfaa": "43f02d372b3f6032748c8f668bb44916",
+    "languages": {
+      "87": "Java 21 64bit",
+      "36": "Java 8 32bit",
+      "7": "Python 2.7.18",
+      "31": "Python 3.13.2",
+      "34": "JavaScript V8 4.8.0"
+    },
+    "url": "https://codeforces.com/contest/2252/problem/F"
+  },
+  {
+    "contestId": 2253,
+    "contestName": "Educational Codeforces Round 193 (Rated for Div. 2)",
+    "index": "E",
+    "name": "Diameter Intersections",
+    "rating": 2200,
+    "tags": [
+      "brute force",
+      "dfs and similar",
+      "fft",
+      "graphs",
+      "implementation",
+      "trees"
+    ],
+    "statement": "E. Diameter Intersections\ntime limit per test\n4 seconds\nmemory limit per test\n512 megabytes\ninput\nstandard input\noutput\nstandard output\n\nYou are given a tree with $$$n$$$ vertices. The diameter of a tree is a simple path of maximum length in the tree. The length of a path is the number of edges it contains. The diameter of the given tree has odd length.\nWe call an integer $$$k$$$ beautiful if it is possible to choose two diameters in this tree (possibly with the same endpoints; it is allowed to choose the same two diameters) such that their intersection contains exactly $$$k$$$ edges.\nFind all beautiful values of $$$k$$$ and output them in increasing order.\n\nInput\nThe first line contains one integer $$$t$$$ ($$$1 \\le t \\le 10^4$$$)\u00a0\u2014 the number of test cases.\nEach test case is given in the following format:\n  the first line contains one integer $$$n$$$ ($$$2 \\le n \\le 10^6$$$)\u00a0\u2014 the number of vertices in the tree;\n the next $$$n - 1$$$ lines contain two integers $$$u$$$ and $$$v$$$ each ($$$1 \\le u, v \\le n$$$, $$$u \\ne v$$$), denoting an edge between vertices $$$u$$$ and $$$v$$$.\nAdditional constraints on the input:\n  the sum of $$$n$$$ over all test cases does not exceed $$$10^6$$$;\n in each test case, the edges form a tree whose diameter has odd length.\n\nOutput\nFor each test case, print one integer $$$m$$$\u00a0\u2014 the number of beauitful values of $$$k$$$; then print the values of $$$k$$$ themselves in increasing order.",
+    "samples": [
+      {
+        "input": "5\n2\n1 2\n4\n1 2\n2 3\n3 4\n6\n1 2\n1 3\n1 4\n2 5\n2 6\n10\n1 2\n1 3\n3 5\n1 4\n4 6\n2 7\n7 9\n2 8\n8 10\n9\n1 2\n1 3\n3 5\n1 4\n4 6\n2 7\n7 8\n7 9",
+        "output": "1 1\n1 3\n3 1 2 3\n3 1 3 5\n4 2 3 4 5"
+      }
+    ],
+    "csrf": "6337e707a3405b3998dcebd67c390c9b",
+    "ftaa": "fhh8klj2brpmyratpe",
+    "bfaa": "43f02d372b3f6032748c8f668bb44916",
+    "languages": {
+      "87": "Java 21 64bit",
+      "36": "Java 8 32bit",
+      "7": "Python 2.7.18",
+      "31": "Python 3.13.2",
+      "34": "JavaScript V8 4.8.0"
+    },
+    "url": "https://codeforces.com/contest/2253/problem/E"
+  },
+  {
+    "contestId": 2253,
+    "contestName": "Educational Codeforces Round 193 (Rated for Div. 2)",
+    "index": "F",
+    "name": "4-beauty",
+    "rating": 2600,
+    "tags": [
+      "bitmasks",
+      "dp",
+      "graphs",
+      "math",
+      "number theory"
+    ],
+    "statement": "F. 4-beauty\ntime limit per test\n5 seconds\nmemory limit per test\n1024 megabytes\ninput\nstandard input\noutput\nstandard output\n\nFor a set of integers $$$S$$$, define its divisibility characteristic as the number of ordered pairs $$$(x, y)$$$ such that $$$x \\ne y$$$, $$$x$$$ and $$$y$$$ belong to $$$S$$$, and $$$x$$$ is divisible by $$$y$$$.\nFor a set of integers $$$A$$$, define its $$$4$$$-beauty as follows:\n  consider all sets of four distinct numbers that belong to $$$A$$$ and form an arithmetic progression;\n find the maximum divisibility characteristic among all such sets.\nIf there are no suitable sets of four numbers, then the $$$4$$$-beauty equals $$$0$$$.\nInitially, the set $$$\\{1, 2, \\ldots, n\\}$$$ is given. You may remove numbers from it. Removing the number $$$i$$$ costs $$$m_i$$$ coins.\nCalculate the minimum number of coins you have to spend in order to decrease the $$$4$$$-beauty of the set.\n\nInput\nThe first line contains one integer $$$n$$$ ($$$4 \\le n \\le 5 \\cdot 10^5$$$)\u00a0\u2014 the number of elements in the initial set.\nThe second line contains $$$n$$$ integers $$$m_1, m_2, \\ldots, m_n$$$ ($$$1 \\le m_i \\le 10^9$$$), where $$$m_i$$$ is the cost of removing the number $$$i$$$.\n\nOutput\nPrint one integer\u00a0\u2014 the minimum number of coins you have to spend in order to decrease the $$$4$$$-beauty of the set. It can be shown that it is always possible.",
+    "samples": [
+      {
+        "input": "4\n5 3 7 2",
+        "output": "2"
+      },
+      {
+        "input": "5\n1 100 100 100 1",
+        "output": "1"
+      },
+      {
+        "input": "8\n2 10 100 10 100 3 100 100",
+        "output": "5"
+      },
+      {
+        "input": "10\n9 9 7 4 8 2 6 5 1 10",
+        "output": "4"
+      }
+    ],
+    "csrf": "6337e707a3405b3998dcebd67c390c9b",
+    "ftaa": "fhh8klj2brpmyratpe",
+    "bfaa": "43f02d372b3f6032748c8f668bb44916",
+    "languages": {
+      "87": "Java 21 64bit",
+      "36": "Java 8 32bit",
+      "7": "Python 2.7.18",
+      "31": "Python 3.13.2",
+      "34": "JavaScript V8 4.8.0"
+    },
+    "url": "https://codeforces.com/contest/2253/problem/F"
+  },
+  {
+    "contestId": 2256,
+    "contestName": "Codeforces Round 1116 (Div. 2)",
+    "index": "E",
+    "name": "Even If the World Turns",
+    "rating": 2100,
+    "tags": [
+      "communication",
+      "greedy",
+      "interactive",
+      "math",
+      "number theory"
+    ],
+    "statement": "E. Even If the World Turns\ntime limit per test\n2 seconds\nmemory limit per test\n256 megabytes\ninput\nstandard input\noutput\nstandard output\n\nNow, no matter what anyone says, I am the happiest girl in the world.\n\u2014 Chtholly\n\nThis is a run-twice (communication) problem.\nAt the Fairy Warehouse, Nygglatho prepared an unusual game for Chtholly and Willem.\nThey would be separated and unable to exchange a single word. Between them there would be only a black-and-white picture\u00a0\u2014 one that Nygglatho could shift, rotate, reflect, or even invert its colors.\nNygglatho saw it as a test of how well they understood each other. Chtholly and Willem perhaps saw only another kind of promise. No matter how the world turned, they would still find the same place.\nThe two players are Chtholly and Willem. The jury, acting as Nygglatho, first communicates with Chtholly. After Chtholly finishes, the jury communicates with Willem. Chtholly and Willem may agree on the strategy they will use beforehand, but they cannot directly pass information to each other.\nIn each test case, Nygglatho prepares a black-and-white picture consisting of $$$n \\times n$$$ cells and chooses a target cell $$$x$$$. The rows and columns are numbered from $$$1$$$ to $$$n$$$.\nThe picture contains $$$w$$$ black cells. It is guaranteed that $$$\\gcd(n,w)=1$$$.\nNygglatho first shows the picture and the target cell $$$x$$$ to Chtholly. Chtholly must choose two cells and swap their colors. The two cells are allowed to be the same. If they are the same, or if they have the same color, the picture does not change. She cannot send Willem any other information.\nSwapping colors does not move the target cell.\nNygglatho then secretly transforms the picture. She may perform the following operations any number of times, possibly zero, in any order:\n  Choose two integers $$$d_r$$$ and $$$d_c$$$ ($$$0\\le d_r,d_c \\lt n$$$) and cyclically shifts the picture. Every cell $$$(r,c)$$$ moves to $$$\\left(\\left(r-1+d_r\\right)\\bmod n+1,\\left(c-1+d_c\\right)\\bmod n+1\\right)$$$;\n Rotate the picture clockwise by $$$90^\\circ$$$. One such rotation moves every cell $$$(r,c)$$$ to $$$(c,n+1-r)$$$;\n Reflect the picture across its vertical axis. Such a reflection moves every cell $$$(r,c)$$$ to $$$(r,n+1-c)$$$;\n Invert all colors. This changes every black cell into a white cell and every white cell into a black cell.\nThe target cell $$$x$$$ undergoes every cyclic shift, rotation, and reflection in exactly the same way as the picture. Color inversions do not move it.\nFinally, Nygglatho shows only the resulting picture to Willem. Willem must determine the final position of $$$x$$$.\nYour program will be run exactly twice on each test. On the first run, it must act as Chtholly. On the second run, it must act as Willem. No information is preserved between the two runs except for the information passed by the jury according to the rules above.\nThe order of the test cases may be changed between the two runs.\nFirst Run\nOn the first run, you are Chtholly.\nInput\nThe first line contains the string first, indicating that this is the first run.\nAfter this line, the remaining input has the following format.\nEach test contains multiple test cases. The first line contains the number of test cases $$$t$$$ ($$$1 \\le t \\le 10^4$$$). The description of the test cases follows.\nThe first line of each test case contains an integer $$$n$$$ ($$$2 \\le n \\le 800$$$)\u00a0\u2014 the height and width of the picture.\nEach of the next $$$n$$$ lines contains a string of length $$$n$$$. The character $$$\\mathtt{\\#}$$$ denotes a black cell, and the character $$$\\mathtt{.}$$$ denotes a white cell.\nThe next line contains two integers $$$r_x$$$ and $$$c_x$$$ ($$$1 \\le r_x,c_x \\le n$$$)\u00a0\u2014 the row and column of the target cell $$$x$$$.\nLet $$$w$$$ be the number of black cells in the picture. It is guaranteed that $$$\\gcd(n,w)=1$$$.\nIt is guaranteed that the sum of $$$n^2$$$ over all test cases does not exceed $$$800^2$$$.\nOutput\nFor each test case, output four integers $$$r_1$$$, $$$c_1$$$, $$$r_2$$$, and $$$c_2$$$ ($$$1 \\le r_1,c_1,r_2,c_2 \\le n$$$)\u00a0\u2014 the two cells whose colors Chtholly chooses to swap. The two cells are allowed to be the same.\nSecond Run\nOn the second run, you are Willem.\nInput\nThe first line contains the string second, indicating that this is the second run.\nAfter this line, the remaining input has the following format.\nEach test contains multiple test cases. The first line contains the number of test cases $$$t$$$ ($$$1 \\le t \\le 10^4$$$). The description of the test cases follows.\nThe value of $$$t$$$ is the same as on the first run, although the test cases may appear in a different order.\nThe first line of each test case contains the integer $$$n$$$ ($$$2 \\le n \\le 800$$$).\nEach of the next $$$n$$$ lines contains a string of length $$$n$$$, describing the resulting picture after Chtholly's swap and Nygglatho's transformations for the corresponding test case from the first run. Again, $$$\\mathtt{\\#}$$$ denotes a black cell and $$$\\mathtt{.}$$$ denotes a white cell.\nIt is guaranteed that the sum of $$$n^2$$$ over all test cases does not exceed $$$800^2$$$.\nOutput\nFor each test case, output two integers $$$r'_x$$$ and $$$c'_x$$$ ($$$1 \\le r'_x,c'_x \\le n$$$)\u00a0\u2014 the row and column of the target cell after all transformations.\nHacks are disabled in this problem.",
+    "samples": [
+      {
+        "input": "first\n2\n5\n#....\n.#...\n.....\n.....\n.....\n3 4\n5\n.....\n####.\n.....\n#####\n.....\n1 1",
+        "output": "1 1 4 1\n1 1 1 1"
+      },
+      {
+        "input": "second\n2\n5\n.....\n####.\n.....\n#####\n.....\n5\n.....\n.....\n....#\n..#..\n.....",
+        "output": "1 1\n1 4"
+      }
+    ],
+    "csrf": "6337e707a3405b3998dcebd67c390c9b",
+    "ftaa": "fhh8klj2brpmyratpe",
+    "bfaa": "43f02d372b3f6032748c8f668bb44916",
+    "languages": {
+      "87": "Java 21 64bit",
+      "36": "Java 8 32bit",
+      "7": "Python 2.7.18",
+      "31": "Python 3.13.2",
+      "34": "JavaScript V8 4.8.0"
+    },
+    "url": "https://codeforces.com/contest/2256/problem/E"
+  },
+  {
+    "contestId": 2256,
+    "contestName": "Codeforces Round 1116 (Div. 2)",
+    "index": "F",
+    "name": "How Long Until Nothing Remains?",
+    "rating": 2300,
+    "tags": [
+      "binary search",
+      "bitmasks",
+      "greedy",
+      "math"
+    ],
+    "statement": "F. How Long Until Nothing Remains?\ntime limit per test\n2 seconds\nmemory limit per test\n256 megabytes\ninput\nstandard input\noutput\nstandard output\n\nBefore her final sortie, Chtholly asks Willem three questions.\nThe first is this: if the end is inevitable, how long will it take until nothing remains?\nWillem cannot answer her directly. Instead, he writes down $$$n$$$ positive integers $$$a_1,a_2,\\ldots,a_n$$$.\nEach operation takes one second. In one operation, Willem does the following:\n  Choose an index $$$p$$$ ($$$1\\le p\\le n$$$);\n Then, replace $$$a_p$$$ with $$$\\left\\lfloor\\dfrac{a_p}{2}\\right\\rfloor$$$, and for every $$$i\\ne p$$$, replace $$$a_i$$$ by $$$\\left\\lceil\\dfrac{a_i}{2}\\right\\rceil$$$. All replacements are performed simultaneously.\nFind the minimum number of seconds needed to make all $$$n$$$ integers equal to $$$0$$$.\n\nInput\nEach test contains multiple test cases. The first line contains the number of test cases $$$t$$$ ($$$1 \\le t \\le 10^4$$$). The description of the test cases follows.\nThe first line of each test case contains one integer $$$n$$$ ($$$1\\le n\\le2\\cdot10^5$$$)\u00a0\u2014 the number of integers.\nThe second line of each test case contains $$$n$$$ integers $$$a_1,a_2,\\ldots,a_n$$$ ($$$1\\le a_i\\le10^9$$$)\u00a0\u2014 the initial integers.\nIt is guaranteed that the sum of $$$n$$$ over all test cases does not exceed $$$2\\cdot10^5$$$.\n\nOutput\nFor each test case, output a single integer\u00a0\u2014 the minimum number of seconds needed to make all integers equal to $$$0$$$.",
+    "samples": [
+      {
+        "input": "5\n1\n3\n3\n1 1 1\n3\n1 2 4\n2\n5 2\n6\n1 2 3 4 5 6",
+        "output": "2\n3\n3\n3\n6"
+      }
+    ],
+    "csrf": "6337e707a3405b3998dcebd67c390c9b",
+    "ftaa": "fhh8klj2brpmyratpe",
+    "bfaa": "43f02d372b3f6032748c8f668bb44916",
+    "languages": {
+      "87": "Java 21 64bit",
+      "36": "Java 8 32bit",
+      "7": "Python 2.7.18",
+      "31": "Python 3.13.2",
+      "34": "JavaScript V8 4.8.0"
+    },
+    "url": "https://codeforces.com/contest/2256/problem/F"
+  },
+  {
+    "contestId": 2257,
+    "contestName": "Codeforces Round 1117 (Div. 2)",
+    "index": "E",
+    "name": "Busy Beaver",
+    "rating": 2100,
+    "tags": [
+      "brute force",
+      "data structures",
+      "divide and conquer",
+      "dp",
+      "greedy",
+      "implementation",
+      "sortings"
+    ],
+    "statement": "E. Busy Beaver\ntime limit per test\n2 seconds\nmemory limit per test\n512 megabytes\ninput\nstandard input\noutput\nstandard output\n\nThe Beaver founded a construction company called \"Busy Beaver\". And now, in order to build up the company's reputation, it needs to construct the tallest building possible.\nThe company has an initial capital of $$$x$$$ carrots (a very valuable currency for beavers) and $$$n$$$ projects available for construction. A separate site has been allocated for each project, and nothing has been built there yet. A building project is represented by a sequence of contracts for constructing the next floor. To build the $$$j$$$-th floor of the $$$i$$$-th building, it is necessary to spend $$$a_{i, j}$$$ carrots; upon completing it, the company immediately receives $$$b_{i,j}$$$ carrots, which are added to the budget, and the company may use them to build higher floors of the same building or to work on other projects. Since the company is still young, not all contracts are necessarily profitable; in other words, it is possible that $$$a_{i,j}  \\gt  b_{i,j}$$$.\nThe Beaver hired you to plan the company's course of action. You choose in which order to build which floors. Note that it is not necessary to complete projects, or even to start them at all. Moreover, between constructing floors of the same building, it is allowed to complete an arbitrary number of contracts unrelated to that building. The main goal is \u2014 to build the tallest building possible.\n\nInput\nEach test contains multiple test cases. The first line contains the number of test cases $$$t$$$ ($$$1 \\le t \\le 3 \\cdot 10^4$$$). The description of the test cases follows.\nThe first line of each input data set contains integers $$$n$$$ and $$$x$$$\u00a0\u2014 the number of building projects and the initial amount of money ($$$1 \\le n \\le 2 \\cdot 10^5; 0 \\le x \\le 10^{18}$$$).\nNext, there are $$$n$$$ descriptions of projects. The first line of the description of project number $$$i$$$ contains the number $$$m_i$$$\u00a0\u2014 the maximum number of floors available for construction in this building ($$$1 \\le m_i \\le 2 \\cdot 10^5$$$).\nThe second line of the project description contains $$$m_i$$$ integers $$$a_{i, 1}, a_{i, 2}, \\ldots a_{i, m_i}$$$\u00a0\u2014 the costs of building the floors. The third line of the project description contains $$$m_i$$$ integers $$$b_{i, 1}, b_{i, 2}, \\ldots b_{i, m_i}$$$\u00a0\u2014 the profits from building the floors. $$$(0 \\leq a_{i, j}, b_{i, j} \\leq 10^9)$$$.\nIt is guaranteed that the sum of $$$m_i$$$ over all test cases does not exceed $$$2 \\cdot 10^5$$$.\n\nOutput\nFor each set of input data, output two numbers\u00a0\u2014 the height, in floors, of the tallest building that can be constructed, and the smallest index of the building for which it is possible to build that number of floors.",
+    "samples": [
+      {
+        "input": "2\n1 6\n4\n4 4 2 1\n2 4 1 1\n2 3\n2\n4 4\n5 5\n2\n2 20\n4 0",
+        "output": "4 1\n2 1"
+      }
+    ],
+    "csrf": "6337e707a3405b3998dcebd67c390c9b",
+    "ftaa": "fhh8klj2brpmyratpe",
+    "bfaa": "43f02d372b3f6032748c8f668bb44916",
+    "languages": {
+      "87": "Java 21 64bit",
+      "36": "Java 8 32bit",
+      "7": "Python 2.7.18",
+      "31": "Python 3.13.2",
+      "34": "JavaScript V8 4.8.0"
+    },
+    "url": "https://codeforces.com/contest/2257/problem/E"
+  },
+  {
+    "contestId": 2258,
+    "contestName": "Codeforces Round 1118 (Div. 2)",
+    "index": "E",
+    "name": "DivMEX",
+    "rating": 2400,
+    "tags": [
+      "data structures",
+      "math",
+      "number theory"
+    ],
+    "statement": "E. DivMEX\ntime limit per test\n3 seconds\nmemory limit per test\n256 megabytes\ninput\nstandard input\noutput\nstandard output\n\nYou are given an array $$$a_1, a_2, \\ldots, a_n$$$ of positive integers.\nLet $$$f(l,r)$$$ for $$$1 \\leq l \\leq r \\leq n$$$ be the smallest positive integer that doesn't divide $$$\\operatorname{lcm}(a_l, a_{l+1}, \\ldots, a_r)$$$. Here, $$$\\operatorname{lcm}$$$ of an array of integers denotes the least common multiple (LCM) of these integers.\nDetermine every positive integer $$$x$$$ such that there exists a pair of integers $$$(l,r)$$$ such that $$$1 \\leq l \\leq r \\leq n$$$ and $$$f(l,r) = x$$$.\n\nInput\nEach test contains multiple test cases. The first line contains the number of test cases $$$t$$$ ($$$1 \\le t \\le 10^4$$$). The description of the test cases follows.\nThe first line of each test case contains $$$n$$$ ($$$1 \\le n \\le 2 \\cdot 10^5$$$), denoting the size of the array.\nThe second line of each test case contains $$$n$$$ integers $$$a_1, a_2, \\ldots, a_n$$$ ($$$1 \\le a_i \\le n$$$).\nIt is guaranteed that the sum of $$$n$$$ over all test cases does not exceed $$$2 \\cdot 10^5$$$.\n\nOutput\nFor each test case, output two lines.\nThe first line should contain a single integer $$$k$$$ \u2014 the number of suitable integers $$$x$$$.\nThe second line should contain $$$k$$$ integers $$$x_1  \\lt  x_2  \\lt  \\ldots  \\lt  x_k$$$, the suitable integers in increasing order.",
+    "samples": [
+      {
+        "input": "3\n1\n1\n3\n2 3 1\n5\n4 3 1 3 4",
+        "output": "1\n2 \n3\n2 3 4 \n3\n2 3 5 "
+      }
+    ],
+    "csrf": "6337e707a3405b3998dcebd67c390c9b",
+    "ftaa": "fhh8klj2brpmyratpe",
+    "bfaa": "43f02d372b3f6032748c8f668bb44916",
+    "languages": {
+      "87": "Java 21 64bit",
+      "36": "Java 8 32bit",
+      "7": "Python 2.7.18",
+      "31": "Python 3.13.2",
+      "34": "JavaScript V8 4.8.0"
+    },
+    "url": "https://codeforces.com/contest/2258/problem/E"
+  },
+  {
+    "contestId": 2258,
+    "contestName": "Codeforces Round 1118 (Div. 2)",
+    "index": "F",
+    "name": "Plus Minus Tree",
+    "rating": 3000,
+    "tags": [
+      "data structures",
+      "dfs and similar",
+      "dp",
+      "graphs",
+      "greedy",
+      "trees"
+    ],
+    "statement": "F. Plus Minus Tree\ntime limit per test\n3 seconds\nmemory limit per test\n256 megabytes\ninput\nstandard input\noutput\nstandard output\n\nYou are given a tree $$$T$$$ with $$$n$$$ vertices, rooted$$$^{\\text{\u2217}}$$$ at vertex $$$1$$$. Each vertex $$$v$$$ is assigned an initial weight $$$ a_v \\in \\{ -1, 0, +1 \\} $$$.\nFor each vertex with weight $$$0$$$, you have to assign a new weight, either $$$-1$$$ or $$$+1$$$. Let $$$x_v$$$ be the final weight of vertex $$$v$$$.\nFor vertex $$$v$$$, let $$$T_v$$$ be the set of nodes in the subtree$$$^{\\text{\u2020}}$$$ of vertex $$$v$$$. The cost of vertex $$$v$$$ is defined as $$$$$$ S_v = \\left| \\sum_{u \\in T_v}{x_u} \\right|.$$$$$$\nThe total cost of the tree is defined as the sum of costs over all vertices. Find the minimum possible total cost of the tree after assigning the weights of all vertices with zero initial weight.\n$$$^{\\text{\u2217}}$$$A tree is a connected graph without cycles. A rooted tree is a tree where one vertex is special and called the root.\n$$$^{\\text{\u2020}}$$$A subtree of vertex $$$v$$$ is the subgraph consisting of $$$v$$$, all its descendants, and all the edges between them. A descendant of vertex $$$v$$$ is any vertex $$$u$$$ for which $$$v$$$ is an ancestor. No vertex is its own descendant. An ancestor of vertex $$$v$$$ is any vertex on the simple path from $$$v$$$ to the root, including the root, but not including $$$v$$$. The root has no ancestors.\n\nInput\nEach test contains multiple test cases. The first line contains the number of test cases $$$t$$$ ($$$1 \\le t \\le 10^4$$$). The description of the test cases follows.\nThe first line of each test case contains $$$n$$$ ($$$2 \\le n \\le 2 \\cdot 10^5$$$), denoting the number of vertices in the tree.\nThe second line of each test case contains $$$n$$$ integers $$$a_1, a_2, \\ldots, a_n$$$ ($$$-1 \\le a_i \\le 1$$$).\nEach of the next $$$n-1$$$ lines contains two integers $$$u$$$ and $$$v$$$ ($$$1 \\le u, v \\le n$$$), denoting the nodes connected with an edge of the tree. It is guaranteed that the given edges form a tree.\nIt is guaranteed that the sum of $$$n$$$ over all test cases does not exceed $$$2 \\cdot 10^5$$$.\n\nOutput\nFor each test case, print the minimum total cost of the tree.",
+    "samples": [
+      {
+        "input": "2\n5\n0 1 -1 0 1\n1 2\n1 3\n2 4\n2 5\n8\n1 -1 1 -1 1 -1 1 -1\n1 2\n2 3\n2 4\n3 5\n4 6\n6 7\n2 8",
+        "output": "5\n7"
+      }
+    ],
+    "csrf": "6337e707a3405b3998dcebd67c390c9b",
+    "ftaa": "fhh8klj2brpmyratpe",
+    "bfaa": "43f02d372b3f6032748c8f668bb44916",
+    "languages": {
+      "87": "Java 21 64bit",
+      "36": "Java 8 32bit",
+      "7": "Python 2.7.18",
+      "31": "Python 3.13.2",
+      "34": "JavaScript V8 4.8.0"
+    },
+    "url": "https://codeforces.com/contest/2258/problem/F"
+  }
+]
